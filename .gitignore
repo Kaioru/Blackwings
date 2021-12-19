@@ -17,6 +17,7 @@ CTestTestfile.cmake
 _deps
 
 ### CMake Visual Studio ###
+out/
 CMakeSettings.json
 
 ### CMake Patch ###
