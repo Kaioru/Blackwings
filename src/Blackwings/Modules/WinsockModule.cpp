@@ -10,30 +10,30 @@ BOOL bInit = false;
 sockaddr_in dwHostAddress;
 sockaddr_in dwRouteAddress;
 
-LPWSPSTARTUP lpWPStartup_O;
-LPWSPCONNECT lpWSPConnect_O;
-LPWSPGETPEERNAME lpWSPGetPeerName_O;
+LPWSPSTARTUP lpWPStartup;
+LPWSPCONNECT lpWSPConnect;
+LPWSPGETPEERNAME lpWSPGetPeerName;
 
-int WINAPI WSPConnect_H(SOCKET s, const struct sockaddr* name, int namelen, LPWSABUF lpCallerData, LPWSABUF lpCalleeData, LPQOS lpSQOS, LPQOS lpGQOS, LPINT lpErrno)
+int WINAPI hkWSPConnect(SOCKET s, const struct sockaddr* name, int namelen, LPWSABUF lpCallerData, LPWSABUF lpCalleeData, LPQOS lpSQOS, LPQOS lpGQOS, LPINT lpErrno)
 {
     auto sAddr = (sockaddr_in*)name;
 
     if (!bInit) {
         dwHostAddress = *sAddr;
 
-        sAddr->sin_addr.S_un.S_addr = inet_addr(Config::Host.c_str());
-        sAddr->sin_port = htons(Config::Port);
+        sAddr->sin_addr.S_un.S_addr = inet_addr(Config::Connection.Host.c_str());
+        sAddr->sin_port = htons(Config::Connection.Port);
 
         dwRouteAddress = *sAddr;
         bInit = true;
     }
 
-    return lpWSPConnect_O(s, name, namelen, lpCallerData, lpCalleeData, lpSQOS, lpGQOS, lpErrno);
+    return lpWSPConnect(s, name, namelen, lpCallerData, lpCalleeData, lpSQOS, lpGQOS, lpErrno);
 }
 
-int WINAPI WSPGetPeerName_H(SOCKET s, struct sockaddr* name, LPINT namelen, LPINT lpErrno)
+int WINAPI hkWSPGetPeerName(SOCKET s, struct sockaddr* name, LPINT namelen, LPINT lpErrno)
 {
-    int nResult = lpWSPGetPeerName_O(s, name, namelen, lpErrno);
+    int nResult = lpWSPGetPeerName(s, name, namelen, lpErrno);
 
     if (nResult == 0) {
         auto sAddr = (sockaddr_in*)name;
@@ -45,16 +45,16 @@ int WINAPI WSPGetPeerName_H(SOCKET s, struct sockaddr* name, LPINT namelen, LPIN
     return nResult;
 }
 
-int WINAPI WSPStartup_H(WORD wVersionRequested, LPWSPDATA lpWSPData, LPWSAPROTOCOL_INFOW lpProtocolInfo, WSPUPCALLTABLE UpcallTable, LPWSPPROC_TABLE lpProcTable)
+int WINAPI hkWSPStartup(WORD wVersionRequested, LPWSPDATA lpWSPData, LPWSAPROTOCOL_INFOW lpProtocolInfo, WSPUPCALLTABLE UpcallTable, LPWSPPROC_TABLE lpProcTable)
 {
-    int nResult = lpWPStartup_O(wVersionRequested, lpWSPData, lpProtocolInfo, UpcallTable, lpProcTable);
+    int nResult = lpWPStartup(wVersionRequested, lpWSPData, lpProtocolInfo, UpcallTable, lpProcTable);
 
     if (nResult == 0) {
-        lpWSPConnect_O = lpProcTable->lpWSPConnect;
-        lpWSPGetPeerName_O = lpProcTable->lpWSPGetPeerName;
+        lpWSPConnect = lpProcTable->lpWSPConnect;
+        lpWSPGetPeerName = lpProcTable->lpWSPGetPeerName;
 
-        lpProcTable->lpWSPConnect = WSPConnect_H;
-        lpProcTable->lpWSPGetPeerName = WSPGetPeerName_H;
+        lpProcTable->lpWSPConnect = hkWSPConnect;
+        lpProcTable->lpWSPGetPeerName = hkWSPGetPeerName;
     }
 
     return nResult;
@@ -64,13 +64,13 @@ void WinsockModule::Attach() {
     HMODULE hModule = LoadLibrary("MSWSOCK");
 
     if (hModule) {
-        lpWPStartup_O = (LPWSPSTARTUP)GetProcAddress(hModule, "WSPStartup");
+        lpWPStartup = (LPWSPSTARTUP)GetProcAddress(hModule, "WSPStartup");
 
-        if (!lpWPStartup_O) return;
+        if (!lpWPStartup) return;
 
         DetourTransactionBegin();
         DetourUpdateThread(GetCurrentThread());
-        DetourAttach((PVOID*)&lpWPStartup_O, (PVOID)WSPStartup_H);
+        DetourAttach((PVOID*)&lpWPStartup, (PVOID)hkWSPStartup);
         DetourTransactionCommit();
     }
 }
@@ -78,6 +78,6 @@ void WinsockModule::Attach() {
 void WinsockModule::Detach() {
     DetourTransactionBegin();
     DetourUpdateThread(GetCurrentThread());
-    DetourDetach((PVOID*)&lpWPStartup_O, (PVOID)WSPStartup_H);
+    DetourDetach((PVOID*)&lpWPStartup, (PVOID)hkWSPStartup);
     DetourTransactionCommit();
 }

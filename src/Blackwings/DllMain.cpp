@@ -1,6 +1,7 @@
 #include <windows.h>
 #include "detours/detours.h"
 
+#include "Modules/WindowModule.h"
 #include "Modules/WinsockModule.h"
 #include "Config.h"
 
@@ -17,10 +18,12 @@ BOOL APIENTRY DllMain(
     if (ul_reason_for_call == DLL_PROCESS_ATTACH) {
         Config::Initialize();
 
+        WindowModule::Attach();
         WinsockModule::Attach();
     }
 
     if (ul_reason_for_call == DLL_PROCESS_DETACH) {
+        WindowModule::Detach();
         WinsockModule::Detach();
     }
 

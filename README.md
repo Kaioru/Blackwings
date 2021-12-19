@@ -5,8 +5,10 @@ A v.95.1 Mushroom game client
 
 ## ✏️ Features
 * **Winsock2 Hooking**
-  * Connection redirection (Configurable in `Blackwings.ini`)
+  * Connection redirection
   * Peer name masking
+* **CreateWindowExA Hooking**
+  * Custom game window title
 
 ## ⭐️ Acknowledgements
 * [Darter](https://github.com/RajanGrewal) - for providing resources and help!
