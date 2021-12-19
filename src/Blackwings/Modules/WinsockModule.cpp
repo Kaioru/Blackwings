@@ -5,8 +5,10 @@
 #include "../Config.h"
 #include "WinsockModule.h"
 
-sockaddr_in* dwHostAddress;
-sockaddr_in* dwRouteAddress;
+BOOL bInit = false;
+
+sockaddr_in dwHostAddress;
+sockaddr_in dwRouteAddress;
 
 LPWSPSTARTUP lpWPStartup_O;
 LPWSPCONNECT lpWSPConnect_O;
@@ -16,13 +18,14 @@ int WINAPI WSPConnect_H(SOCKET s, const struct sockaddr* name, int namelen, LPWS
 {
     auto sAddr = (sockaddr_in*)name;
 
-    if (!dwHostAddress) {
-        dwHostAddress = sAddr;
+    if (!bInit) {
+        dwHostAddress = *sAddr;
 
         sAddr->sin_addr.S_un.S_addr = inet_addr(Config::Host.c_str());
         sAddr->sin_port = htons(Config::Port);
 
-        dwRouteAddress = sAddr;
+        dwRouteAddress = *sAddr;
+        bInit = true;
     }
 
     return lpWSPConnect_O(s, name, namelen, lpCallerData, lpCalleeData, lpSQOS, lpGQOS, lpErrno);
@@ -35,8 +38,8 @@ int WINAPI WSPGetPeerName_H(SOCKET s, struct sockaddr* name, LPINT namelen, LPIN
     if (nResult == 0) {
         auto sAddr = (sockaddr_in*)name;
 
-        sAddr->sin_addr.S_un.S_addr = dwHostAddress->sin_addr.S_un.S_addr;
-        sAddr->sin_port = dwHostAddress->sin_port;
+        sAddr->sin_addr.S_un.S_addr = dwHostAddress.sin_addr.S_un.S_addr;
+        sAddr->sin_port = dwHostAddress.sin_port;
     }
 
     return nResult;
