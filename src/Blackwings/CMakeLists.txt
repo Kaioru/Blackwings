@@ -2,7 +2,7 @@
 
 project ("Blackwings")
 
-file (GLOB_RECURSE BLACKWINGS_SRC CONFIGURE_DEPENDS "*.h" "*.cpp" "*.ini")
+file (GLOB_RECURSE BLACKWINGS_SRC CONFIGURE_DEPENDS "*.h" "*.cpp")
 configure_file (Blackwings.ini Blackwings.ini COPYONLY)
 
 add_library (${PROJECT_NAME} SHARED ${BLACKWINGS_SRC})
