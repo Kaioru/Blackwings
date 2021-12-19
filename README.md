@@ -9,6 +9,8 @@ A v.95.1 Mushroom game client
   * Peer name masking
 * **CreateWindowExA Hooking**
   * Custom game window title
+* **StringPool Hooking**
+  * Custom StringPool strings
 
 ## ⭐️ Acknowledgements
 * [Darter](https://github.com/RajanGrewal) - for providing resources and help!
