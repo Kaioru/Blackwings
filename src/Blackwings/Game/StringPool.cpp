@@ -1,8 +1,8 @@
 #include "StringPool.h"
 #include "Addresses.h"
 
-auto cGetInstance = reinterpret_cast<pGetInstance>(ADDR_STRINGPOOL__GETINSTANCE);
-auto cGetString = reinterpret_cast<pGetString>(ADDR_STRINGPOOL__GETSTRING);
+auto cGetInstance   = reinterpret_cast<pGetInstance>(ADDR_STRINGPOOL__GETINSTANCE);
+auto cGetString     = reinterpret_cast<pGetString>(ADDR_STRINGPOOL__GETSTRING);
 
 StringPool* StringPool::GetInstance() {
     return cGetInstance();

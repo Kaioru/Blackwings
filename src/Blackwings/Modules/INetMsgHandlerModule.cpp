@@ -11,10 +11,10 @@ typedef void(__fastcall* pCCashShop__OnPacket)(void* pThis, void* edx, int nType
 typedef void(__fastcall* pCITC__OnPacket)(void* pThis, void* edx, int nType, void* iPacket);
 typedef void(__fastcall* pCWvsContext__OnPacket)(void* pThis, void* edx, int nType, void* iPacket);
 
-auto oCLogin__OnPacket = reinterpret_cast<pCLogin__OnPacket>(ADDR_CLOGIN__ONPACKET);
-auto oCField__OnPacket = reinterpret_cast<pCField__OnPacket>(ADDR_CFIELD__ONPACKET);
-auto oCCashShop__OnPacket = reinterpret_cast<pCCashShop__OnPacket>(ADDR_CCASHSHOP__ONPACKET);
-auto oCITC__OnPacket = reinterpret_cast<pCITC__OnPacket>(ADDR_CITC__ONPACKET);
+auto oCLogin__OnPacket      = reinterpret_cast<pCLogin__OnPacket>(ADDR_CLOGIN__ONPACKET);
+auto oCField__OnPacket      = reinterpret_cast<pCField__OnPacket>(ADDR_CFIELD__ONPACKET);
+auto oCCashShop__OnPacket   = reinterpret_cast<pCCashShop__OnPacket>(ADDR_CCASHSHOP__ONPACKET);
+auto oCITC__OnPacket        = reinterpret_cast<pCITC__OnPacket>(ADDR_CITC__ONPACKET);
 auto oCWvsContext__OnPacket = reinterpret_cast<pCWvsContext__OnPacket>(ADDR_CWVSCONTEXT__ONPACKET);
 
 bool OnPacket(int nType, void* iPacket) {

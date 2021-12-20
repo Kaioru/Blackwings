@@ -5,8 +5,8 @@
 
 template struct ZXString<char>;
 
-auto oFormat = reinterpret_cast<pFormat>(ADDR_ZXSTRING__FORMAT);
-auto oAssign = reinterpret_cast<pAssign>(ADDR_ZXSTRING__ASSIGN);
+auto oFormat    = reinterpret_cast<pFormat>(ADDR_ZXSTRING__FORMAT);
+auto oAssign    = reinterpret_cast<pAssign>(ADDR_ZXSTRING__ASSIGN);
 
 ZXString<char>* ZXString<char>::Format(const char* sFormat, ...) {
     va_list va;

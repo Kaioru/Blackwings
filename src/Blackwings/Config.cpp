@@ -10,8 +10,8 @@
 #define CONFIG_CONNECTION_PORT  8484
 #define CONFIG_GAME_TITLE       "Blackwings"
 
-ConfigConnection Config::Connection;
-ConfigGame Config::Game;
+ConfigConnection    Config::Connection;
+ConfigGame          Config::Game;
 
 void Config::Initialize() {
 #if CONFIG_LOAD_FROM_FILE
@@ -30,6 +30,6 @@ void Config::Initialize() {
 #else
     Connection.Host = CONFIG_CONNECTION_HOST;
     Connection.Port = CONFIG_CONNECTION_PORT;
-    Game.Title = CONFIG_GAME_TITLE;
+    Game.Title      = CONFIG_GAME_TITLE;
 #endif
 }

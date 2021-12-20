@@ -10,9 +10,9 @@ BOOL bInit = false;
 sockaddr_in dwHostAddress;
 sockaddr_in dwRouteAddress;
 
-LPWSPSTARTUP lpWPStartup;
-LPWSPCONNECT lpWSPConnect;
-LPWSPGETPEERNAME lpWSPGetPeerName;
+LPWSPSTARTUP        lpWPStartup;
+LPWSPCONNECT        lpWSPConnect;
+LPWSPGETPEERNAME    lpWSPGetPeerName;
 
 int WINAPI hkWSPConnect(SOCKET s, const struct sockaddr* name, int namelen, LPWSABUF lpCallerData, LPWSABUF lpCalleeData, LPQOS lpSQOS, LPQOS lpGQOS, LPINT lpErrno)
 {
