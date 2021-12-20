@@ -1,6 +1,6 @@
 template <typename T>
 struct ZXString {
-private:
+public:
 	T* _m_pStr;
 
 public:

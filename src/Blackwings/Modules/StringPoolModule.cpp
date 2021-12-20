@@ -13,13 +13,14 @@ std::map<int, std::string> g_mStringPool;
 auto oGetString = reinterpret_cast<pGetString>(ADDR_STRINGPOOL__GETSTRING);
 
 ZXString<char>* __fastcall hkGetString(StringPool* pThis, void* edx, ZXString<char>* result, unsigned int nIdx, char formal) {
+    auto sResult = oGetString(pThis, edx, result, nIdx, formal);
+    
     if (g_mStringPool.count(nIdx) > 0) {
         auto szEntry = g_mStringPool[nIdx];
-        result->Assign(szEntry.c_str(), -1);
-        return result;
+        sResult->Assign(szEntry.c_str(), -1);
     }
 
-    return oGetString(pThis, edx, result, nIdx, formal);
+    return sResult;
 }
 
 void StringPoolModule::Initialize() {
@@ -28,15 +29,9 @@ void StringPoolModule::Initialize() {
 }
 
 void StringPoolModule::Attach() {
-    DetourTransactionBegin();
-    DetourUpdateThread(GetCurrentThread());
     DetourAttach((PVOID*)&oGetString, (PVOID)hkGetString);
-    DetourTransactionCommit();
 }
 
 void StringPoolModule::Detach() {
-    DetourTransactionBegin();
-    DetourUpdateThread(GetCurrentThread());
     DetourDetach((PVOID*)&oGetString, (PVOID)hkGetString);
-    DetourTransactionCommit();
 }

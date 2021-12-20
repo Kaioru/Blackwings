@@ -35,16 +35,10 @@ void WindowModule::Attach() {
 
         if (!oCreateWindowExA) return;
 
-        DetourTransactionBegin();
-        DetourUpdateThread(GetCurrentThread());
         DetourAttach((PVOID*)&oCreateWindowExA, (PVOID)hkCreateWindowExA);
-        DetourTransactionCommit();
     }
 }
 
 void WindowModule::Detach() {
-    DetourTransactionBegin();
-    DetourUpdateThread(GetCurrentThread());
     DetourDetach((PVOID*)&oCreateWindowExA, (PVOID)hkCreateWindowExA);
-    DetourTransactionCommit();
 }

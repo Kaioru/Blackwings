@@ -68,16 +68,10 @@ void WinsockModule::Attach() {
 
         if (!lpWPStartup) return;
 
-        DetourTransactionBegin();
-        DetourUpdateThread(GetCurrentThread());
         DetourAttach((PVOID*)&lpWPStartup, (PVOID)hkWSPStartup);
-        DetourTransactionCommit();
     }
 }
 
 void WinsockModule::Detach() {
-    DetourTransactionBegin();
-    DetourUpdateThread(GetCurrentThread());
     DetourDetach((PVOID*)&lpWPStartup, (PVOID)hkWSPStartup);
-    DetourTransactionCommit();
 }

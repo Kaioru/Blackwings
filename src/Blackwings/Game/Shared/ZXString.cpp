@@ -3,8 +3,8 @@
 
 template struct ZXString<char>;
 
-auto cAssign = reinterpret_cast<pAssign>(ADDR_ZXSTRING__ASSIGN);
+auto oAssign = reinterpret_cast<pAssign>(ADDR_ZXSTRING__ASSIGN);
 
 void ZXString<char>::Assign(const char* s, int n) {
-    return cAssign(this, this, s, n);
+    return oAssign(this, this, s, n);
 }
