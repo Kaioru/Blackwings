@@ -2,7 +2,7 @@
 #include "detours/detours.h"
 
 #include "Game/StringPool.h"
-#include "Modules/WindowModule.h"
+#include "Modules/WinAPIModule.h"
 #include "Modules/WinsockModule.h"
 #include "Modules/StringPoolModule.h"
 #include "Modules/INetMsgHandlerModule.h"
@@ -24,7 +24,7 @@ BOOL APIENTRY DllMain(
         DetourTransactionBegin();
         DetourUpdateThread(GetCurrentThread());
 
-        WindowModule::Attach();
+        WinAPIModule::Attach();
         WinsockModule::Attach();
 
         StringPoolModule::Initialize();
@@ -39,7 +39,7 @@ BOOL APIENTRY DllMain(
         DetourTransactionBegin();
         DetourUpdateThread(GetCurrentThread());
 
-        WindowModule::Detach();
+        WinAPIModule::Detach();
         WinsockModule::Detach();
         StringPoolModule::Detach();
         INetMsgHandlerModule::Detach();

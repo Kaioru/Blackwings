@@ -2,7 +2,7 @@
 #include "detours/detours.h"
 
 #include "../Config.h"
-#include "WindowModule.h"
+#include "WinAPIModule.h"
 
 typedef HWND(WINAPI* pCreateWindowExA)(
     DWORD     dwExStyle,
@@ -27,7 +27,7 @@ HWND hkCreateWindowExA(DWORD dwExStyle, LPCSTR lpClassName, LPCSTR lpWindowName,
     return oCreateWindowExA(dwExStyle, lpClassName, lpWindowName, dwStyle, X, Y, nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam);
 }
 
-void WindowModule::Attach() {
+void WinAPIModule::Attach() {
     HMODULE hModule = LoadLibrary("USER32");
 
     if (hModule) {
@@ -39,6 +39,6 @@ void WindowModule::Attach() {
     }
 }
 
-void WindowModule::Detach() {
+void WinAPIModule::Detach() {
     DetourDetach((PVOID*)&oCreateWindowExA, (PVOID)hkCreateWindowExA);
 }
