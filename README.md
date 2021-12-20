@@ -11,6 +11,8 @@ A v.95.1 Mushroom game client
   * Custom game window title
 * **StringPool Hooking**
   * Custom StringPool strings
+* **::OnPacket Hooking**
+  * Custom packet handling
 
 ## ⭐️ Acknowledgements
 * [Darter](https://github.com/RajanGrewal) - for providing resources and help!
