@@ -17,7 +17,7 @@ auto oCCashShop__OnPacket = reinterpret_cast<pCCashShop__OnPacket>(ADDR_CCASHSHO
 auto oCITC__OnPacket = reinterpret_cast<pCITC__OnPacket>(ADDR_CITC__ONPACKET);
 auto oCWvsContext__OnPacket = reinterpret_cast<pCWvsContext__OnPacket>(ADDR_CWVSCONTEXT__ONPACKET);
 
-bool OnPacket(void* pThis, int nType, void* iPacket) {
+bool OnPacket(int nType, void* iPacket) {
     switch (nType) {
     default:
         return false;
@@ -27,27 +27,27 @@ bool OnPacket(void* pThis, int nType, void* iPacket) {
 }
 
 void __fastcall hkCLogin__OnPacket(void* pThis, void* edx, int nType, void* iPacket) {
-    if (OnPacket(pThis, nType, iPacket)) return;
+    if (OnPacket(nType, iPacket)) return;
     oCLogin__OnPacket(pThis, edx, nType, iPacket);
 }
 
 void __fastcall hkCField__OnPacket(void* pThis, void* edx, int nType, void* iPacket) {
-    if (OnPacket(pThis, nType, iPacket)) return;
+    if (OnPacket(nType, iPacket)) return;
     oCField__OnPacket(pThis, edx, nType, iPacket);
 }
 
 void __fastcall hkCCashShop__OnPacket(void* pThis, void* edx, int nType, void* iPacket) {
-    if (OnPacket(pThis, nType, iPacket)) return;
+    if (OnPacket(nType, iPacket)) return;
     oCCashShop__OnPacket(pThis, edx, nType, iPacket);
 }
 
 void __fastcall hkCITC__OnPacket(void* pThis, void* edx, int nType, void* iPacket) {
-    if (OnPacket(pThis, nType, iPacket)) return;
+    if (OnPacket(nType, iPacket)) return;
     oCITC__OnPacket(pThis, edx, nType, iPacket);
 }
 
 void __fastcall hkCWvsContext__OnPacket(void* pThis, void* edx, int nType, void* iPacket) {
-    if (OnPacket(pThis, nType, iPacket)) return;
+    if (OnPacket(nType, iPacket)) return;
     oCWvsContext__OnPacket(pThis, edx, nType, iPacket);
 }
 
