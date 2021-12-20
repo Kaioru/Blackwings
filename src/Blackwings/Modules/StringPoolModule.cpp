@@ -20,11 +20,15 @@ ZXString<char>* __fastcall hkGetString(StringPool* pThis, void* edx, ZXString<ch
         sResult->Assign(szEntry.c_str(), -1);
     }
 
+    if (nIdx == 909) {
+        sResult->Format(sResult->_m_pStr, Config::Game.Title);
+    }
+
     return sResult;
 }
 
 void StringPoolModule::Initialize() {
-    g_mStringPool[909] = "[Welcome] Welcome to Mushroom game!!";
+    g_mStringPool[909] = "[Welcome] Welcome to %s!!";
     g_mStringPool[910] = "[Tip]";
 }
 
