@@ -18,7 +18,7 @@ int WINAPI hkWSPConnect(SOCKET s, const struct sockaddr* name, int namelen, LPWS
 {
     auto sAddr = (sockaddr_in*)name;
 
-    if (!bInit) {
+    if (!bInit || sAddr->sin_addr.S_un.S_addr == dwHostAddress.sin_addr.S_un.S_addr) {
         dwHostAddress = *sAddr;
 
         sAddr->sin_addr.S_un.S_addr = inet_addr(Config::Connection.Host.c_str());
