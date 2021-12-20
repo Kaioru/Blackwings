@@ -52,23 +52,17 @@ void __fastcall hkCWvsContext__OnPacket(void* pThis, void* edx, int nType, void*
 }
 
 void INetMsgHandlerModule::Attach() {
-    DetourTransactionBegin();
-    DetourUpdateThread(GetCurrentThread());
     DetourAttach((PVOID*)&oCLogin__OnPacket, (PVOID)hkCLogin__OnPacket);
     DetourAttach((PVOID*)&oCField__OnPacket, (PVOID)hkCField__OnPacket);
     DetourAttach((PVOID*)&oCCashShop__OnPacket, (PVOID)hkCCashShop__OnPacket);
     DetourAttach((PVOID*)&oCITC__OnPacket, (PVOID)hkCITC__OnPacket);
     DetourAttach((PVOID*)&oCWvsContext__OnPacket, (PVOID)hkCWvsContext__OnPacket);
-    DetourTransactionCommit();
 }
 
 void INetMsgHandlerModule::Detach() {
-    DetourTransactionBegin();
-    DetourUpdateThread(GetCurrentThread());
     DetourDetach((PVOID*)&oCLogin__OnPacket, (PVOID)hkCLogin__OnPacket);
     DetourDetach((PVOID*)&oCField__OnPacket, (PVOID)hkCField__OnPacket);
     DetourDetach((PVOID*)&oCCashShop__OnPacket, (PVOID)hkCCashShop__OnPacket);
     DetourDetach((PVOID*)&oCITC__OnPacket, (PVOID)hkCITC__OnPacket);
     DetourDetach((PVOID*)&oCWvsContext__OnPacket, (PVOID)hkCWvsContext__OnPacket);
-    DetourTransactionCommit();
 }
