@@ -12,8 +12,8 @@ std::map<int, std::string> g_mStringPool;
 
 auto oGetString = reinterpret_cast<pGetString>(ADDR_STRINGPOOL__GETSTRING);
 
-ZXString<char>* __fastcall hkGetString(StringPool* pThis, void* edx, ZXString<char>* result, unsigned int nIdx, char formal) {
-    auto sResult = oGetString(pThis, edx, result, nIdx, formal);
+ZXString<char>* __fastcall hkGetString(StringPool* pThis, void* edx, ZXString<char>* result, unsigned int nIdx, char __formal) {
+    auto sResult = oGetString(pThis, edx, result, nIdx, __formal);
     
     if (g_mStringPool.count(nIdx) > 0) {
         auto szEntry = g_mStringPool[nIdx];
