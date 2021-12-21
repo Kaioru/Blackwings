@@ -13,6 +13,8 @@ A v.95.1 Mushroom game client
   * Custom StringPool strings
 * **::OnPacket Hooking**
   * Custom packet handling
+* ** Game Memory editting ** (see `src/Modules/GameMemoryModule.cpp`)
+  * Patch damage cap
 
 ## ⭐️ Acknowledgements
 * [Darter](https://github.com/RajanGrewal) - for providing resources and help!

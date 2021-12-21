@@ -1,11 +1,9 @@
 #include <windows.h>
 #include "detours/detours.h"
 
-#include "Game/StringPool.h"
+#include "Game.h";
 #include "Modules/WinAPIModule.h"
 #include "Modules/WinsockModule.h"
-#include "Modules/StringPoolModule.h"
-#include "Modules/INetMsgHandlerModule.h"
 #include "Config.h"
 
 extern "C" __declspec(dllexport) void NoOp() {}
@@ -27,24 +25,17 @@ BOOL APIENTRY DllMain(
         WinAPIModule::Attach();
         WinsockModule::Attach();
 
-        StringPoolModule::Initialize();
-        StringPoolModule::Attach();
-
-        INetMsgHandlerModule::Attach();
-
         DetourTransactionCommit();
     }
     
     if (ul_reason_for_call == DLL_PROCESS_DETACH) {
         DetourTransactionBegin();
         DetourUpdateThread(GetCurrentThread());
-
         WinAPIModule::Detach();
         WinsockModule::Detach();
-        StringPoolModule::Detach();
-        INetMsgHandlerModule::Detach();
-
         DetourTransactionCommit();
+
+        Game::OnGameEnd();
     }
     
     return TRUE;
