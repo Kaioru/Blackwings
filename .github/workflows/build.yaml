@@ -12,11 +12,10 @@ jobs:
     - name: Add msbuild to PATH
       uses: microsoft/setup-msbuild@v1.1
 
-    - name: Install packages
+    - name: Setup vcpkg 
       run: |
         bootstrap-vcpkg
         vcpkg integrate install
-        vcpkg install
   
     - name: Build
-      run: msbuild /property:Configuration=Release
+      run: msbuild -property:Configuration=Release
