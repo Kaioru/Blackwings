@@ -82,6 +82,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="config.h" />
+    <ClInclude Include="CWvsContext.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="hooks.h" />
@@ -90,8 +91,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="config.cpp" />
+    <ClCompile Include="CWvsContext.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="hook_gameresolution.cpp" />
     <ClCompile Include="hook_winapi.cpp" />
     <ClCompile Include="hook_winsock.cpp" />
     <ClCompile Include="memory.cpp" />

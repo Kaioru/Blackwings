@@ -13,5 +13,10 @@ VOID Game::OnGameInit()
 
 VOID Game::OnGameStart()
 {
+    DetourTransactionBegin();
+    DetourUpdateThread(GetCurrentThread());
 
+    Hooks::HookGameResolution();
+
+    DetourTransactionCommit();
 }

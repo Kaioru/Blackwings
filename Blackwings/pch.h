@@ -16,4 +16,6 @@
 #include "hooks.h"
 #include "game.h"
 
+#include "CWvsContext.h"
+
 #endif
