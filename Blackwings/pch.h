@@ -8,6 +8,10 @@
 #define PCH_H
 
 #include "framework.h"
+
 #include <detours/detours.h>
+
+#include "config.h"
+#include "memory.h"
 
 #endif
