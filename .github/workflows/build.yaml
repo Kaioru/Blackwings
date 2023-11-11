@@ -1,0 +1,22 @@
+name: Build
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Add msbuild to PATH
+      uses: microsoft/setup-msbuild@v1.1
+
+    - name: Install packages
+      run: |
+        bootstrap-vcpkg
+        vcpkg integrate install
+        vcpkg install
+  
+    - name: Build
+      run: msbuild /property:Configuration=Release
