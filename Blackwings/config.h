@@ -1,8 +1,11 @@
 #pragma once
 
 class Config {
+public:
     static LPSTR    ConnectionHost;
     static USHORT   ConnectionPort;
 
-    static void Read();
+    static LPSTR    GameTitle;
+
+    static VOID Read();
 };

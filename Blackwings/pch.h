@@ -13,5 +13,7 @@
 
 #include "config.h"
 #include "memory.h"
+#include "hooks.h"
+#include "game.h"
 
 #endif

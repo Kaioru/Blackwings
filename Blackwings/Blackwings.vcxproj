@@ -83,12 +83,17 @@
   <ItemGroup>
     <ClInclude Include="config.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="game.h" />
+    <ClInclude Include="hooks.h" />
     <ClInclude Include="memory.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="config.cpp" />
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="game.cpp" />
+    <ClCompile Include="hook_winapi.cpp" />
+    <ClCompile Include="hook_winsock.cpp" />
     <ClCompile Include="memory.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

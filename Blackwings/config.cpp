@@ -5,7 +5,19 @@
 LPSTR   Config::ConnectionHost;
 USHORT  Config::ConnectionPort;
 
-void Config::Read() {
-    GetPrivateProfileStringA("Connection", "Host", "127.0.0.1", ConnectionHost, 255, CONFIG_FILE_PATH);
+LPSTR   Config::GameTitle;
+
+VOID Config::Read() {
+    LPSTR sHost = new char[255];
+
+    GetPrivateProfileStringA("Connection", "Host", "127.0.0.1", sHost, 255, CONFIG_FILE_PATH);
+
+    ConnectionHost = sHost;
     ConnectionPort = GetPrivateProfileIntA("Connection", "Port", 8484, CONFIG_FILE_PATH);
+
+    LPSTR sTitle = new char[255];
+
+    GetPrivateProfileStringA("Game", "Title", "Blackwings", sTitle, 255, CONFIG_FILE_PATH);
+
+    GameTitle = sTitle;
 }
