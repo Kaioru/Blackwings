@@ -34,6 +34,7 @@ typedef VOID(__fastcall* _CWvsContext__SetScreenResolution_t)(
     BOOL bSave
 );
 
+BOOL isAllowResize = FALSE;
 _CWvsApp__WindowProc_t              orig_CWvsApp__WindowProc                = reinterpret_cast<_CWvsApp__WindowProc_t>(0x009CC2B0);
 _CWvsContext__SetScreenResolution_t orig_CWvsContext__SetScreenResolution   = reinterpret_cast<_CWvsContext__SetScreenResolution_t>(0x009CD0C0);;
 
@@ -62,7 +63,7 @@ INT hook_CWvsApp__WindowProc(
             INT nNewWidth = lpRect->right - lpRect->left - WINDOW_LR_BORDER_PADDING;
             INT nNewHeight = lpRect->bottom - lpRect->top - WINDOW_TB_BORDER_PADDING;
 
-            if (nNewWidth < MIDRES_W - 25 || nNewHeight < MIDRES_H - 75)
+            if (!isAllowResize || nNewWidth < MIDRES_W - 25 || nNewHeight < MIDRES_H - 75)
             {
                 lpRect->right = lpRect->left + LOWRES_W + WINDOW_LR_BORDER_PADDING;
                 lpRect->bottom = lpRect->top + LOWRES_H + WINDOW_TB_BORDER_PADDING;
@@ -96,6 +97,11 @@ INT hook_CWvsApp__WindowProc(
             nNewWidth = lpRect->right - lpRect->left - WINDOW_LR_BORDER_PADDING;
             nNewHeight = lpRect->bottom - lpRect->top - WINDOW_TB_BORDER_PADDING;
 
+            if (!isAllowResize) {
+                nNewWidth = 800;
+                nNewHeight = 600;
+            }
+
             if (nCurrentWidth != nNewWidth || nCurrentHeight != nNewHeight)
             {
                 nCurrentWidth = nNewWidth;
@@ -117,6 +123,7 @@ VOID __fastcall hook_CWvsContext__SetScreenResolution(
     BOOL bSave
 ) 
 {
+    isAllowResize = bLargeScreen;
     orig_CWvsContext__SetScreenResolution(pThis, edx, bLargeScreen, bSave);
 }
 
@@ -127,7 +134,7 @@ VOID Game::SetGameResolution(INT nWidth, INT nHeight)
     Memory::Write<INT>(0x009CD138 + 1, nWidth);
     Memory::Write<INT>(0x009CD13D + 1, nHeight);
 
-    orig_CWvsContext__SetScreenResolution(CWvsContext::GetInstance(), NULL, TRUE, TRUE);
+    hook_CWvsContext__SetScreenResolution(CWvsContext::GetInstance(), NULL, TRUE, TRUE);
 }
 
 VOID Hooks::HookGameResolution()
