@@ -13,7 +13,7 @@ typedef HWND(WINAPI* LPCREATEWINDOWEXA)(
     HMENU     hMenu,
     HINSTANCE hInstance,
     LPVOID    lpParam
-    );
+);
 
 LPCREATEWINDOWEXA orig_CreateWindowExA;
 
