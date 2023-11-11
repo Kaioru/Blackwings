@@ -21,5 +21,5 @@ VOID Config::Read() {
     GetPrivateProfileStringA("Game", "Title", "Blackwings", sTitle, 255, CONFIG_FILE_PATH);
 
     GameTitle = sTitle;
-    GameWindowSizing = GetPrivateProfileIntA("Game", "PatchGameWindowSizing", 1, CONFIG_FILE_PATH);
+    GameWindowSizing = GetPrivateProfileIntA("Game", "GameWindowSizing", 1, CONFIG_FILE_PATH);
 }
