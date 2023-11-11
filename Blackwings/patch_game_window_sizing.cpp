@@ -137,7 +137,7 @@ VOID Game::SetGameResolution(INT nWidth, INT nHeight)
     hook_CWvsContext__SetScreenResolution(CWvsContext::GetInstance(), NULL, TRUE, TRUE);
 }
 
-VOID Hooks::HookGameResolution()
+VOID Patches::PatchGameWindowSizing()
 {
     DetourAttach((PVOID*)&orig_CWvsApp__WindowProc, (PVOID)hook_CWvsApp__WindowProc);
     DetourAttach((PVOID*)&orig_CWvsContext__SetScreenResolution, (PVOID)hook_CWvsContext__SetScreenResolution);

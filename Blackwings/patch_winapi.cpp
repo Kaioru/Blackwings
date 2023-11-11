@@ -34,7 +34,9 @@ HWND hook_CreateWindowExA(
 {
     if (!strcmp(lpClassName, "MapleStoryClass")) {
         lpWindowName = Config::GameTitle;
-        dwStyle |= WS_THICKFRAME;
+
+        if (Config::GameWindowSizing)
+            dwStyle |= WS_THICKFRAME;
 
         Game::OnGameStart();
     }
@@ -55,7 +57,7 @@ HWND hook_CreateWindowExA(
     );
 }
 
-VOID Hooks::HookWinAPI()
+VOID Patches::PatchWinAPI()
 {
     auto hModule = LoadLibraryA("USER32");
 

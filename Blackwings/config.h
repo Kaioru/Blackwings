@@ -6,6 +6,7 @@ public:
     static USHORT   ConnectionPort;
 
     static LPSTR    GameTitle;
+    static BOOL     GameWindowSizing;
 
     static VOID Read();
 };

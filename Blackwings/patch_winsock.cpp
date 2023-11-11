@@ -80,7 +80,7 @@ INT WINAPI hook_WSPStartup(
     return nResult;
 }
 
-VOID Hooks::HookWinSock()
+VOID Patches::PatchWinSock()
 {
     auto hModule = LoadLibraryA("MSWSOCK");
 

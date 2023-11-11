@@ -27,7 +27,7 @@
     <ClInclude Include="config.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="hooks.h">
+    <ClInclude Include="patches.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="game.h">
@@ -50,16 +50,16 @@
     <ClCompile Include="config.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="hook_winsock.cpp">
+    <ClCompile Include="patch_winsock.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="hook_winapi.cpp">
+    <ClCompile Include="patch_winapi.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="hook_gameresolution.cpp">
+    <ClCompile Include="patch_game_window_sizing.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CWvsContext.cpp">

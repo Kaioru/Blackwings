@@ -13,7 +13,7 @@
 
 #include "config.h"
 #include "memory.h"
-#include "hooks.h"
+#include "patches.h"
 #include "game.h"
 
 #include "CWvsContext.h"

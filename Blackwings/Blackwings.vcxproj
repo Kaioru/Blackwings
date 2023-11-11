@@ -85,7 +85,7 @@
     <ClInclude Include="CWvsContext.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="game.h" />
-    <ClInclude Include="hooks.h" />
+    <ClInclude Include="patches.h" />
     <ClInclude Include="memory.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
@@ -94,9 +94,9 @@
     <ClCompile Include="CWvsContext.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="game.cpp" />
-    <ClCompile Include="hook_gameresolution.cpp" />
-    <ClCompile Include="hook_winapi.cpp" />
-    <ClCompile Include="hook_winsock.cpp" />
+    <ClCompile Include="patch_game_window_sizing.cpp" />
+    <ClCompile Include="patch_winapi.cpp" />
+    <ClCompile Include="patch_winsock.cpp" />
     <ClCompile Include="memory.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

@@ -6,6 +6,7 @@ LPSTR   Config::ConnectionHost;
 USHORT  Config::ConnectionPort;
 
 LPSTR   Config::GameTitle;
+BOOL    Config::GameWindowSizing;
 
 VOID Config::Read() {
     LPSTR sHost = new char[255];
@@ -20,4 +21,5 @@ VOID Config::Read() {
     GetPrivateProfileStringA("Game", "Title", "Blackwings", sTitle, 255, CONFIG_FILE_PATH);
 
     GameTitle = sTitle;
+    GameWindowSizing = GetPrivateProfileIntA("Game", "PatchGameWindowSizing", 1, CONFIG_FILE_PATH);
 }

@@ -5,8 +5,8 @@ VOID Game::OnGameInit()
     DetourTransactionBegin();
     DetourUpdateThread(GetCurrentThread());
 
-    Hooks::HookWinAPI();
-    Hooks::HookWinSock();
+    Patches::PatchWinAPI();
+    Patches::PatchWinSock();
 
     DetourTransactionCommit();
 }
@@ -16,7 +16,8 @@ VOID Game::OnGameStart()
     DetourTransactionBegin();
     DetourUpdateThread(GetCurrentThread());
 
-    Hooks::HookGameResolution();
+    if (Config::GameWindowSizing)
+        Patches::PatchGameWindowSizing();
 
     DetourTransactionCommit();
 }
