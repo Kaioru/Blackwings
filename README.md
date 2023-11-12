@@ -25,7 +25,8 @@ The following are the available config options:
 1. Check the [releases](https://github.com/Kaioru/Blackwings/releases) tab and download a release!
 
 #### Copy release contents
-2. Copy `Blackwings.dll` and `Blackwings.ini` to your Mushroom game folder with the localhost
+2. Copy contents of the release to your Mushroom game folder with the localhost
+    * `Blackwings.dll`, `Blackwings.ini`, and other `*.dll` files (if any)
 
 #### Add imports to localhost
 3. Open the localhost in CFF Explorer
