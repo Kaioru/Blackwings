@@ -77,7 +77,7 @@
     <ClCompile Include="patch_winsock.cpp">
       <Filter>Source Files\Patches</Filter>
     </ClCompile>
-    <ClCompile Include="patch_game_window_ui.cpp">
+    <ClCompile Include="patch_game_window_imgui.cpp">
       <Filter>Source Files\Patches</Filter>
     </ClCompile>
   </ItemGroup>
