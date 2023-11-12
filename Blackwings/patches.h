@@ -6,6 +6,6 @@ public:
     static VOID PatchWinSock();
 
     static VOID PatchGameLogoSkip();
-    static VOID PatchGameWindowUI();
+    static VOID PatchGameWindowImGui();
     static VOID PatchGameWindowSizing();
 };

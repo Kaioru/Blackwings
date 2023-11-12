@@ -7,7 +7,7 @@ USHORT  Config::ConnectionPort;
 
 LPSTR   Config::GameTitle;
 BOOL    Config::GameLogoSkip;
-BOOL    Config::GameWindowUI;
+BOOL    Config::GameWindowImGui;
 BOOL    Config::GameWindowSizing;
 
 VOID Config::Read() {
@@ -24,6 +24,6 @@ VOID Config::Read() {
 
     GameTitle = sTitle;
     GameLogoSkip = GetPrivateProfileIntA("Game", "LogoSkip", 1, CONFIG_FILE_PATH);
-    GameWindowUI = GetPrivateProfileIntA("Game", "WindowUI", 1, CONFIG_FILE_PATH);
+    GameWindowImGui = GetPrivateProfileIntA("Game", "WindowImGui", 1, CONFIG_FILE_PATH);
     GameWindowSizing = GetPrivateProfileIntA("Game", "WindowSizing", 1, CONFIG_FILE_PATH);
 }
