@@ -94,6 +94,7 @@
     <ClCompile Include="CWvsContext.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="patch_game_logo_skip.cpp" />
     <ClCompile Include="patch_game_window_sizing.cpp" />
     <ClCompile Include="patch_winapi.cpp" />
     <ClCompile Include="patch_winsock.cpp" />

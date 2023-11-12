@@ -65,6 +65,9 @@
     <ClCompile Include="CWvsContext.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="patch_game_logo_skip.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="Blackwings.ini" />

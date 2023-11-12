@@ -16,6 +16,8 @@ VOID Game::OnGameStart()
     DetourTransactionBegin();
     DetourUpdateThread(GetCurrentThread());
 
+    if (Config::GameLogoSkip)
+        Patches::PatchGameLogoSkip();
     if (Config::GameWindowSizing)
         Patches::PatchGameWindowSizing();
 
