@@ -9,8 +9,6 @@ extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(
 
 typedef HRESULT(APIENTRY* _IDirect3DDevice9__Reset_t)(IDirect3DDevice9* pDevice, D3DPRESENT_PARAMETERS* pPresentationParameters);
 typedef HRESULT(APIENTRY* _IDirect3DDevice9__Present_t)(IDirect3DDevice9* pDevice, const RECT *pSourceRect, const RECT *pDestRect, HWND hDestWindowOverride, const RGNDATA *pDirtyRegion);
-typedef HRESULT(APIENTRY* _IDirect3DDevice9__BeginScene_t)(IDirect3DDevice9* pDevice);
-typedef HRESULT(APIENTRY* _IDirect3DDevice9__EndScene_t)(IDirect3DDevice9* pDevice);
 
 BOOL bInitUI = FALSE;
 HWND hWindow;
@@ -18,8 +16,6 @@ HWND hWindow;
 WNDPROC orig_WndProc;
 _IDirect3DDevice9__Reset_t      orig_IDirect3DDevice9__Reset;
 _IDirect3DDevice9__Present_t    orig_IDirect3DDevice9__Present;
-_IDirect3DDevice9__BeginScene_t orig_IDirect3DDevice9__BeginScene;
-_IDirect3DDevice9__EndScene_t   orig_IDirect3DDevice9__EndScene;
 
 LRESULT WINAPI hook_WndProc(
     const HWND hWnd, 
@@ -101,16 +97,6 @@ HRESULT APIENTRY hook_IDirect3DDevice9__Present(
     return orig_IDirect3DDevice9__Present(pDevice, pSourceRect, pDestRect, hDestWindowOverride, pDirtyRegion);
 }
 
-HRESULT APIENTRY hook_IDirect3DDevice9__BeginScene(IDirect3DDevice9* pDevice)
-{
-    return orig_IDirect3DDevice9__BeginScene(pDevice);
-}
-
-HRESULT APIENTRY hook_IDirect3DDevice9__EndScene(IDirect3DDevice9* pDevice)
-{
-    return orig_IDirect3DDevice9__EndScene(pDevice);
-}
-
 VOID Patches::PatchGameWindowImGui()
 {
     IDirect3D9* pD3D9 = Direct3DCreate9(D3D_SDK_VERSION);
@@ -137,13 +123,9 @@ VOID Patches::PatchGameWindowImGui()
 
     orig_IDirect3DDevice9__Reset = (_IDirect3DDevice9__Reset_t)pTable[16];
     orig_IDirect3DDevice9__Present = (_IDirect3DDevice9__Present_t)pTable[17];
-    orig_IDirect3DDevice9__BeginScene = (_IDirect3DDevice9__BeginScene_t)pTable[41];
-    orig_IDirect3DDevice9__EndScene = (_IDirect3DDevice9__EndScene_t)pTable[42];
 
     DetourAttach((PVOID*)&orig_IDirect3DDevice9__Reset, (PVOID)hook_IDirect3DDevice9__Reset);
     DetourAttach((PVOID*)&orig_IDirect3DDevice9__Present, (PVOID)hook_IDirect3DDevice9__Present);
-    //DetourAttach((PVOID*)&orig_IDirect3DDevice9__BeginScene, (PVOID)hook_IDirect3DDevice9__BeginScene);
-    //DetourAttach((PVOID*)&orig_IDirect3DDevice9__EndScene, (PVOID)hook_IDirect3DDevice9__EndScene);
 
     pDevice->Release();
     pD3D9->Release();
