@@ -87,7 +87,10 @@ HRESULT APIENTRY hook_IDirect3DDevice9__Present(
         ImGui_ImplWin32_NewFrame();
         ImGui::NewFrame();
 
-        // TODO
+        ImGuiIO& io = ImGui::GetIO(); (void)io;
+        io.MouseDrawCursor = io.WantCaptureMouse;
+
+        // Uncomment this to show demo UI
         // ImGui::ShowDemoWindow();
 
         ImGui::EndFrame();
