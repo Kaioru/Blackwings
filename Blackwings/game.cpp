@@ -6,6 +6,8 @@ VOID Game::OnGameInit()
     BOOL bAlloc = AllocConsole();
 
     if (bAlloc) {
+        SetConsoleTitleA(fmt::format("{} (PID: {})", Config::GameTitle, GetCurrentProcessId()).c_str());
+
         FILE* file = nullptr;
 
         freopen_s(&file, "CONIN$", "r", stdin);
