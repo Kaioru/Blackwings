@@ -7,6 +7,7 @@ public:
 
     static LPSTR    GameTitle;
     static BOOL     GameLogoSkip;
+    static BOOL     GameWindowUI;
     static BOOL     GameWindowSizing;
 
     static VOID Read();

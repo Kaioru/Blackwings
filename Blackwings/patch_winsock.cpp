@@ -5,7 +5,7 @@
 #include <winsock2.h>
 #include <WS2spi.h>
 
-BOOL bInit = false;
+BOOL bInitSock = false;
 
 sockaddr_in dwHostAddress;
 sockaddr_in dwRouteAddress;
@@ -27,14 +27,14 @@ INT WINAPI hook_WSPConnect(
 {
     auto sAddr = (sockaddr_in*)name;
 
-    if (!bInit || sAddr->sin_addr.S_un.S_addr == dwHostAddress.sin_addr.S_un.S_addr) {
+    if (!bInitSock || sAddr->sin_addr.S_un.S_addr == dwHostAddress.sin_addr.S_un.S_addr) {
         dwHostAddress = *sAddr;
 
         sAddr->sin_addr.S_un.S_addr = inet_addr(Config::ConnectionHost);
         sAddr->sin_port = htons(Config::ConnectionPort);
 
         dwRouteAddress = *sAddr;
-        bInit = true;
+        bInitSock = TRUE;
     }
 
     return orig_WSPConnect(s, name, namelen, lpCallerData, lpCalleeData, lpSQOS, lpGQOS, lpErrno);

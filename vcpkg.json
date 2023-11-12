@@ -2,6 +2,15 @@
   "dependencies": [
     "detours",
     "winsock2",
+    "dxsdk-d3dx",
+    {
+      "name": "imgui",
+      "default-features": false,
+      "features": [
+        "dx9-binding",
+        "win32-binding"
+      ]
+    },
     "fmt",
     "spdlog"
   ]

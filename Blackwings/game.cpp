@@ -32,6 +32,8 @@ VOID Game::OnGameStart()
 
     if (Config::GameLogoSkip)
         Patches::PatchGameLogoSkip();
+    if (Config::GameWindowUI)
+        Patches::PatchGameWindowUI();
     if (Config::GameWindowSizing)
         Patches::PatchGameWindowSizing();
 

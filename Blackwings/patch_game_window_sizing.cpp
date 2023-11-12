@@ -108,6 +108,7 @@ INT hook_CWvsApp__WindowProc(
 
                 Game::SetGameResolution(nCurrentWidth, nCurrentHeight);
             }
+
             break;
         }
     }

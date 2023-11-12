@@ -11,6 +11,14 @@
 
 #include <detours/detours.h>
 
+#pragma comment(lib, "d3d9.lib")
+
+#include <d3d9.h>
+#include <dxsdk-d3dx/d3dx9.h>
+#include <imgui.h>
+#include <imgui_impl_dx9.h>
+#include <imgui_impl_win32.h>
+
 #ifndef _DEBUG
 #define SPDLOG_ACTIVE_LEVEL SPDLOG_LEVEL_OFF
 #endif

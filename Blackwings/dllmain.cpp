@@ -13,7 +13,7 @@ BOOL APIENTRY DllMain(
     switch (ul_reason_for_call)
     {
         case DLL_PROCESS_ATTACH:
-            Config::Read();
+            Config::Read(); 
             Game::OnGameInit();
             break;
         case DLL_PROCESS_DETACH:
