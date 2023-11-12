@@ -108,7 +108,7 @@ HRESULT APIENTRY hook_IDirect3DDevice9__EndScene(IDirect3DDevice9* pDevice)
     return orig_IDirect3DDevice9__EndScene(pDevice);
 }
 
-VOID Patches::PatchGameWindowImGUI()
+VOID Patches::PatchGameWindowImGui()
 {
     IDirect3D9* pD3D9 = Direct3DCreate9(D3D_SDK_VERSION);
     D3DPRESENT_PARAMETERS d3dParams = {};
