@@ -11,6 +11,13 @@
 
 #include <detours/detours.h>
 
+#ifndef _DEBUG
+#define SPDLOG_ACTIVE_LEVEL SPDLOG_LEVEL_OFF
+#endif
+
+#include <fmt/format.h>
+#include <spdlog/spdlog.h>
+
 #include "config.h"
 #include "memory.h"
 #include "patches.h"

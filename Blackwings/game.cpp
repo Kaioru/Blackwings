@@ -2,6 +2,18 @@
 
 VOID Game::OnGameInit() 
 {
+#ifdef _DEBUG
+    BOOL bAlloc = AllocConsole();
+
+    if (bAlloc) {
+        FILE* file = nullptr;
+
+        freopen_s(&file, "CONIN$", "r", stdin);
+        freopen_s(&file, "CONOUT$", "w", stdout);
+        freopen_s(&file, "CONOUT$", "w", stderr);
+    }
+#endif
+
     DetourTransactionBegin();
     DetourUpdateThread(GetCurrentThread());
 
@@ -9,6 +21,8 @@ VOID Game::OnGameInit()
     Patches::PatchWinSock();
 
     DetourTransactionCommit();
+
+    SPDLOG_INFO("Game initialized");
 }
 
 VOID Game::OnGameStart()
@@ -22,4 +36,6 @@ VOID Game::OnGameStart()
         Patches::PatchGameWindowSizing();
 
     DetourTransactionCommit();
+
+    SPDLOG_INFO("Game started");
 }

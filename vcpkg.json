@@ -1,6 +1,8 @@
 {
   "dependencies": [
     "detours",
-    "winsock2"
+    "winsock2",
+    "fmt",
+    "spdlog"
   ]
 }

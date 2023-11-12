@@ -34,7 +34,9 @@ typedef VOID(__fastcall* _CWvsContext__SetScreenResolution_t)(
     BOOL bSave
 );
 
-BOOL isAllowResize = FALSE;
+INT nCurrentWidth = 800;
+INT nCurrentHeight = 600;
+BOOL bAllowResize = FALSE;
 _CWvsApp__WindowProc_t              orig_CWvsApp__WindowProc                = reinterpret_cast<_CWvsApp__WindowProc_t>(0x009CC2B0);
 _CWvsContext__SetScreenResolution_t orig_CWvsContext__SetScreenResolution   = reinterpret_cast<_CWvsContext__SetScreenResolution_t>(0x009CD0C0);;
 
@@ -45,9 +47,6 @@ INT hook_CWvsApp__WindowProc(
     LPARAM lParam
 )
 {
-    static INT nCurrentWidth = 800;
-    static INT nCurrentHeight = 600;
-
     switch (uMsg)
     {
         case WM_NCHITTEST:
@@ -63,7 +62,7 @@ INT hook_CWvsApp__WindowProc(
             INT nNewWidth = lpRect->right - lpRect->left - WINDOW_LR_BORDER_PADDING;
             INT nNewHeight = lpRect->bottom - lpRect->top - WINDOW_TB_BORDER_PADDING;
 
-            if (!isAllowResize || nNewWidth < MIDRES_W - 25 || nNewHeight < MIDRES_H - 75)
+            if (!bAllowResize || nNewWidth < MIDRES_W - 25 || nNewHeight < MIDRES_H - 75)
             {
                 lpRect->right = lpRect->left + LOWRES_W + WINDOW_LR_BORDER_PADDING;
                 lpRect->bottom = lpRect->top + LOWRES_H + WINDOW_TB_BORDER_PADDING;
@@ -97,7 +96,7 @@ INT hook_CWvsApp__WindowProc(
             nNewWidth = lpRect->right - lpRect->left - WINDOW_LR_BORDER_PADDING;
             nNewHeight = lpRect->bottom - lpRect->top - WINDOW_TB_BORDER_PADDING;
 
-            if (!isAllowResize) {
+            if (!bAllowResize) {
                 nNewWidth = 800;
                 nNewHeight = 600;
             }
@@ -123,7 +122,7 @@ VOID __fastcall hook_CWvsContext__SetScreenResolution(
     BOOL bSave
 ) 
 {
-    isAllowResize = bLargeScreen;
+    bAllowResize = bLargeScreen;
     orig_CWvsContext__SetScreenResolution(pThis, edx, bLargeScreen, bSave);
 }
 
