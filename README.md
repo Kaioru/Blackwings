@@ -1,4 +1,4 @@
-# Blackwings
+# Blackwings [![Build](https://github.com/Kaioru/Blackwings/actions/workflows/build.yaml/badge.svg)](https://github.com/Kaioru/Blackwings/actions/workflows/build.yaml)
 ..is a v.95.1 Mushroom game client
 
 ### 🎉 Features
