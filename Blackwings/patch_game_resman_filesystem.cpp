@@ -44,7 +44,6 @@ _Ztl_bstr_t_constructor_t orig_Ztl_bstr_t_constructor = reinterpret_cast<_Ztl_bs
 
 _IWzResMan__operator_deref_t orig_IWzResMan__deref = reinterpret_cast<_IWzResMan__operator_deref_t>(0x00401DE0);
 _IWzResMan__SetResManParam_t orig_IWzResMan__SetResManParam = reinterpret_cast<_IWzResMan__SetResManParam_t>(0x009C0920);
-_IWzResMan__GetObjectA_t orig_IWzResMan__GetObjectA = reinterpret_cast<_IWzResMan__GetObjectA_t>(0x00404AA0);
 _IWzNameSpace__operator_deref_t orig_IWzNameSpace__operator_deref = reinterpret_cast<_IWzNameSpace__operator_deref_t>(0x009C19A0);
 _IWzNameSpace__Mount_t orig_IWzNameSpace__Mount = reinterpret_cast<_IWzNameSpace__Mount_t>(0x009C8DB0);
 _IWzFileSystem__constructor_t orig_IWzFileSystem__constructor = reinterpret_cast<_IWzNameSpace__operator_deref_t>(0x009C1A50);
