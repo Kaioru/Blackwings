@@ -42,6 +42,11 @@ jobs:
 
   publish_artifacts:
     needs: versioning
+    strategy:
+      matrix:
+        configuration: [Release, Debug]
+
+    name: Publish artifacts (${{ matrix.runtime }})
     runs-on: windows-latest
 
     steps:
@@ -56,16 +61,16 @@ jobs:
         vcpkg integrate install
   
     - name: Build
-      run: msbuild /property:Configuration=Release
+      run: msbuild /property:Configuration=${{ matrix.configuration }}
 
     - name: Compress artifacts
-      run: Compress-Archive -Path Release/* -Destination Blackwings-${{ needs.versioning.outputs.version }}.zip
+      run: Compress-Archive -Path ${{ matrix.configuration }}/* -Destination Blackwings-${{ matrix.configuration }}-${{ needs.versioning.outputs.version }}.zip
 
     - name: Store artifacts
       uses: actions/upload-artifact@v3
       with:
-        name: Blackwings-${{ needs.versioning.outputs.version }}
-        path: Blackwings-${{ needs.versioning.outputs.version }}.zip
+        name: Blackwings-${{ matrix.configuration }}-${{ needs.versioning.outputs.version }}
+        path: Blackwings-${{ matrix.configuration }}-${{ needs.versioning.outputs.version }}.zip
 
 
   publish_release:
