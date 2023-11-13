@@ -92,7 +92,7 @@
     <ClCompile Include="patch_game_resman_filesystem.cpp">
       <Filter>Source Files\Patches</Filter>
     </ClCompile>
-    <ClCompile Include="patch_game_logging.cpp">
+    <ClCompile Include="patch_game_resman_hotfix.cpp">
       <Filter>Source Files\Patches</Filter>
     </ClCompile>
   </ItemGroup>

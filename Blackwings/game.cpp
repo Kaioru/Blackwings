@@ -33,7 +33,7 @@ VOID Game::OnGameStart()
     DetourUpdateThread(GetCurrentThread());
 
 #ifdef _DEBUG
-    Patches::PatchGameLogging();
+    Patches::PatchGameResManHotfix();
 #endif
 
     if (Config::GameLogoSkip)

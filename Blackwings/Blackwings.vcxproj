@@ -97,7 +97,7 @@
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="patch_game_input_joystick_disable.cpp" />
-    <ClCompile Include="patch_game_logging.cpp" />
+    <ClCompile Include="patch_game_resman_hotfix.cpp" />
     <ClCompile Include="patch_game_logo_skip.cpp" />
     <ClCompile Include="patch_game_resman_filesystem.cpp" />
     <ClCompile Include="patch_game_window_imgui.cpp" />

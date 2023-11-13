@@ -10,6 +10,7 @@ BOOL    Config::GameLogoSkip;
 BOOL    Config::GameWindowImGui;
 BOOL    Config::GameWindowSizing;
 BOOL    Config::GameResManFileSystem;
+BOOL    Config::GameResManHotfix;
 BOOL    Config::GameInputJoystickDisable;
 
 VOID Config::Read() {
@@ -29,5 +30,6 @@ VOID Config::Read() {
     GameWindowImGui             = GetPrivateProfileIntA("Game", "WindowImGui", 1, CONFIG_FILE_PATH);
     GameWindowSizing            = GetPrivateProfileIntA("Game", "WindowSizing", 1, CONFIG_FILE_PATH);
     GameResManFileSystem        = GetPrivateProfileIntA("Game", "ResManFileSystem", 0, CONFIG_FILE_PATH);
+    GameResManHotfix            = GetPrivateProfileIntA("Game", "ResManHotfix", 0, CONFIG_FILE_PATH);
     GameInputJoystickDisable    = GetPrivateProfileIntA("Game", "InputJoystickDisable", 1, CONFIG_FILE_PATH);
 }
