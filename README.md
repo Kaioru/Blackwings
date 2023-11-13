@@ -26,6 +26,7 @@ The following are the available config options:
 
 #### Download a release
 1. Check the [releases](https://github.com/Kaioru/Blackwings/releases) tab and download a release!
+    * Note: Debug builds contain additional debugging tools and logging
 
 #### Copy release contents
 2. Copy contents of the release to your Mushroom game folder with the localhost
