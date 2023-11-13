@@ -24,7 +24,7 @@ VOID Game::OnGameInit()
 
     DetourTransactionCommit();
 
-    SPDLOG_INFO("Game initialized");
+    SPDLOG_INFO("{} initialized", Config::GameTitle);
 }
 
 VOID Game::OnGameStart()
@@ -49,5 +49,5 @@ VOID Game::OnGameStart()
 
     DetourTransactionCommit();
 
-    SPDLOG_INFO("Game started");
+    SPDLOG_INFO("{} started", Config::GameTitle);
 }
