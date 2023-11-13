@@ -38,6 +38,8 @@ VOID Game::OnGameStart()
         Patches::PatchGameWindowImGui();
     if (Config::GameWindowSizing)
         Patches::PatchGameWindowSizing();
+    if (Config::GameResManFileSystem)
+        Patches::PatchGameResManFileSystem();
     if (Config::GameInputJoystickDisable)
         Patches::PatchGameInputJoystickDisable();
 

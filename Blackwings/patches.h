@@ -8,5 +8,6 @@ public:
     static VOID PatchGameLogoSkip();
     static VOID PatchGameWindowImGui();
     static VOID PatchGameWindowSizing();
+    static VOID PatchGameResManFileSystem();
     static VOID PatchGameInputJoystickDisable();
 };

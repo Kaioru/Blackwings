@@ -9,6 +9,7 @@ LPSTR   Config::GameTitle;
 BOOL    Config::GameLogoSkip;
 BOOL    Config::GameWindowImGui;
 BOOL    Config::GameWindowSizing;
+BOOL    Config::GameResManFileSystem;
 BOOL    Config::GameInputJoystickDisable;
 
 VOID Config::Read() {
@@ -24,8 +25,9 @@ VOID Config::Read() {
     GetPrivateProfileStringA("Game", "Title", "Blackwings", sTitle, 255, CONFIG_FILE_PATH);
 
     GameTitle = sTitle;
-    GameLogoSkip = GetPrivateProfileIntA("Game", "LogoSkip", 1, CONFIG_FILE_PATH);
-    GameWindowImGui = GetPrivateProfileIntA("Game", "WindowImGui", 1, CONFIG_FILE_PATH);
-    GameWindowSizing = GetPrivateProfileIntA("Game", "WindowSizing", 1, CONFIG_FILE_PATH);
-    GameInputJoystickDisable = GetPrivateProfileIntA("Game", "InputJoystickDisable", 1, CONFIG_FILE_PATH);
+    GameLogoSkip                = GetPrivateProfileIntA("Game", "LogoSkip", 1, CONFIG_FILE_PATH);
+    GameWindowImGui             = GetPrivateProfileIntA("Game", "WindowImGui", 1, CONFIG_FILE_PATH);
+    GameWindowSizing            = GetPrivateProfileIntA("Game", "WindowSizing", 1, CONFIG_FILE_PATH);
+    GameResManFileSystem = GetPrivateProfileIntA("Game", "ResManFileSystem", 0, CONFIG_FILE_PATH);
+    GameInputJoystickDisable    = GetPrivateProfileIntA("Game", "InputJoystickDisable", 1, CONFIG_FILE_PATH);
 }

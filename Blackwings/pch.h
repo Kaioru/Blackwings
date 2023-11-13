@@ -29,6 +29,8 @@
 #include "CWvsContext.h"
 #include "CInputSystem.h"
 
+#include "Ztl_bstr_t.h";
+
 #include "config.h"
 #include "memory.h"
 #include "patches.h"

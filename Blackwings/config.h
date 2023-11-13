@@ -9,6 +9,7 @@ public:
     static BOOL     GameLogoSkip;
     static BOOL     GameWindowImGui;
     static BOOL     GameWindowSizing;
+    static BOOL     GameResManFileSystem;
     static BOOL     GameInputJoystickDisable;
 
     static VOID Read();
