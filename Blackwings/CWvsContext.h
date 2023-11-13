@@ -1,6 +1,6 @@
 #pragma once
 
-class CWvsContext {
+struct CWvsContext {
 public:
     static CWvsContext* GetInstance();
 };

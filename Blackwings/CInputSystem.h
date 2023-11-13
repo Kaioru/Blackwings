@@ -1,6 +1,6 @@
 #pragma once
 
-class CInputSystem {
+struct CInputSystem {
 public:
     static CInputSystem* GetInstance();
 };
