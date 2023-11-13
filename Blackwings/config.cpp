@@ -9,6 +9,7 @@ LPSTR   Config::GameTitle;
 BOOL    Config::GameLogoSkip;
 BOOL    Config::GameWindowImGui;
 BOOL    Config::GameWindowSizing;
+BOOL    Config::GameInputJoystickDisable;
 
 VOID Config::Read() {
     LPSTR sHost = new char[255];
@@ -26,4 +27,5 @@ VOID Config::Read() {
     GameLogoSkip = GetPrivateProfileIntA("Game", "LogoSkip", 1, CONFIG_FILE_PATH);
     GameWindowImGui = GetPrivateProfileIntA("Game", "WindowImGui", 1, CONFIG_FILE_PATH);
     GameWindowSizing = GetPrivateProfileIntA("Game", "WindowSizing", 1, CONFIG_FILE_PATH);
+    GameInputJoystickDisable = GetPrivateProfileIntA("Game", "InputJoystickDisable", 1, CONFIG_FILE_PATH);
 }

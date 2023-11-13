@@ -45,6 +45,9 @@
     <ClInclude Include="CWvsContext.h">
       <Filter>Header Files\Game</Filter>
     </ClInclude>
+    <ClInclude Include="CInputSystem.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -79,6 +82,12 @@
     </ClCompile>
     <ClCompile Include="patch_game_window_imgui.cpp">
       <Filter>Source Files\Patches</Filter>
+    </ClCompile>
+    <ClCompile Include="patch_game_input_joystick_disable.cpp">
+      <Filter>Source Files\Patches</Filter>
+    </ClCompile>
+    <ClCompile Include="CInputSystem.cpp">
+      <Filter>Source Files\Game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -81,6 +81,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CInputSystem.h" />
     <ClInclude Include="config.h" />
     <ClInclude Include="CWvsContext.h" />
     <ClInclude Include="framework.h" />
@@ -90,10 +91,12 @@
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CInputSystem.cpp" />
     <ClCompile Include="config.cpp" />
     <ClCompile Include="CWvsContext.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="patch_game_input_joystick_disable.cpp" />
     <ClCompile Include="patch_game_logo_skip.cpp" />
     <ClCompile Include="patch_game_window_imgui.cpp" />
     <ClCompile Include="patch_game_window_sizing.cpp" />

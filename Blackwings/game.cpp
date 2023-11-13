@@ -38,6 +38,8 @@ VOID Game::OnGameStart()
         Patches::PatchGameWindowImGui();
     if (Config::GameWindowSizing)
         Patches::PatchGameWindowSizing();
+    if (Config::GameInputJoystickDisable)
+        Patches::PatchGameInputJoystickDisable();
 
     DetourTransactionCommit();
 

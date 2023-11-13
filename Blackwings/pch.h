@@ -26,11 +26,12 @@
 #include <fmt/format.h>
 #include <spdlog/spdlog.h>
 
+#include "CWvsContext.h"
+#include "CInputSystem.h"
+
 #include "config.h"
 #include "memory.h"
 #include "patches.h"
 #include "game.h"
-
-#include "CWvsContext.h"
 
 #endif
