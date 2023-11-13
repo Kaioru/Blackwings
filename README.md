@@ -15,7 +15,6 @@ The following are the available config options:
 * WindowImGui - Enables DirectX9 hooks for ImGui
 * WindowSizing - Enables dynamic window resizing
 * ResManFileSystem - Enables loading from .img files via the Data/ directory
-* TemplateLazyLoad - Enables lazy loading for Mob, Npc, and Reactor templates (speeds up client start time)
 * InputJoystickDisable - Disables joystick detection to avoid unneccessary poll calls
 
 ### ✨ Usage
