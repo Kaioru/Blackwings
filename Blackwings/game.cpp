@@ -32,10 +32,6 @@ VOID Game::OnGameStart()
     DetourTransactionBegin();
     DetourUpdateThread(GetCurrentThread());
 
-#ifdef _DEBUG
-    Patches::PatchGameResManHotfix();
-#endif
-
     if (Config::GameLogoSkip)
         Patches::PatchGameLogoSkip();
     if (Config::GameWindowImGui)
@@ -44,6 +40,8 @@ VOID Game::OnGameStart()
         Patches::PatchGameWindowSizing();
     if (Config::GameResManFileSystem)
         Patches::PatchGameResManFileSystem();
+    if (Config::GameResManHotfix)
+        Patches::PatchGameResManHotfix();
     if (Config::GameInputJoystickDisable)
         Patches::PatchGameInputJoystickDisable();
 

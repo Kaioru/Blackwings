@@ -21,6 +21,8 @@
 
 #ifndef _DEBUG
 #define SPDLOG_ACTIVE_LEVEL SPDLOG_LEVEL_OFF
+#else
+#include <iostream>
 #endif
 
 #include <fmt/format.h>

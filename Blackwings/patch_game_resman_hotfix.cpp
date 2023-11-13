@@ -13,7 +13,8 @@ struct _bstr_t {
 };
 struct Ztl_bstr_t : _bstr_t {};
 
-typedef VOID(_fastcall* _Ztl_bstr_t__constuctor_t)(Ztl_bstr_t* pThis, PVOID edx, const wchar_t* s);
+typedef VOID(_fastcall* _Ztl_bstr_t__constuctorA_t)(Ztl_bstr_t* pThis, PVOID edx, const char* s);
+typedef VOID(_fastcall* _Ztl_bstr_t__constuctorW_t)(Ztl_bstr_t* pThis, PVOID edx, const wchar_t* s);
 typedef LONG(_fastcall* _bstr_t__Data_t__Release_t)(PVOID pThis, PVOID edx);
 typedef PVOID(_fastcall* _IWzResMan__GetObjectA_t)(
     PVOID pThis,
@@ -43,7 +44,8 @@ typedef HRESULT(__stdcall* _IWzResMan__raw_OverrideObject_t)
     wchar_t* sOverride
 );
 
-_Ztl_bstr_t__constuctor_t orig_Ztl_bstr_t__constuctor = reinterpret_cast<_Ztl_bstr_t__constuctor_t>(0x004048B0);
+_Ztl_bstr_t__constuctorA_t orig_Ztl_bstr_t__constuctorA = reinterpret_cast<_Ztl_bstr_t__constuctorA_t>(0x00404890);
+_Ztl_bstr_t__constuctorW_t orig_Ztl_bstr_t__constuctorW = reinterpret_cast<_Ztl_bstr_t__constuctorW_t>(0x004048B0);
 _bstr_t__Data_t__Release_t orig_bstr_t__Data_t__Release = reinterpret_cast<_bstr_t__Data_t__Release_t>(0x00403AE0);
 _IWzResMan__GetObjectA_t orig_IWzResMan__GetObjectA = reinterpret_cast<_IWzResMan__GetObjectA_t>(0x00404AA0);
 
@@ -58,9 +60,11 @@ PVOID _fastcall hook_IWzResMan__GetObjectA(
 {
     VOID** pTable = *reinterpret_cast<void***>(pThis);
     _IWzResMan__raw_GetObject_t orig_raw_GetObject = (_IWzResMan__raw_GetObject_t)pTable[7];
+    Ztl_bstr_t sFile;
     Ztl_bstr_t sHotfix;
 
-    orig_Ztl_bstr_t__constuctor(&sHotfix, NULL, fmt::format(L"Blackwings/Hotfix.img/{}", sUOL.m_Data->m_wstr).c_str());
+    orig_Ztl_bstr_t__constuctorA(&sFile, NULL, Config::GameTitle);
+    orig_Ztl_bstr_t__constuctorW(&sHotfix, NULL, fmt::format(L"{}/Hotfix.img/{}", sFile.m_Data->m_wstr, sUOL.m_Data->m_wstr).c_str());
 
     HRESULT hResult = orig_raw_GetObject(
         pThis,
@@ -75,6 +79,13 @@ PVOID _fastcall hook_IWzResMan__GetObjectA(
         vAux->decVal.Mid32,
         result
     );
+
+#ifdef _DEBUG
+    std::wcout << "IWzResMan::GetObjectA " << sUOL.m_Data->m_wstr << std::endl;
+#endif
+
+    if (sFile.m_Data)
+        orig_bstr_t__Data_t__Release(sFile.m_Data, NULL);
 
     if (sHotfix.m_Data)
         orig_bstr_t__Data_t__Release(sHotfix.m_Data, NULL);
