@@ -14,6 +14,7 @@ The following are the available config options:
 * LogoSkip - Enables game logo skip
 * WindowImGui - Enables DirectX9 hooks for ImGui
 * WindowSizing - Enables dynamic window resizing
+* ResManFileSystem - Enables loading from .img files via the Data/ directory
 * InputJoystickDisable - Disables joystick detection to avoid unneccessary poll calls
 
 ### ✨ Usage
