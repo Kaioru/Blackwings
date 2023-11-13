@@ -1,5 +1,5 @@
 #include "pch.h"
-#include <fmt/xchar.h>
+#include <atlstr.h>
 
 struct _variant_t : tagVARIANT {};
 struct Ztl_variant_t : _variant_t {};
@@ -60,11 +60,13 @@ PVOID _fastcall hook_IWzResMan__GetObjectA(
 {
     VOID** pTable = *reinterpret_cast<void***>(pThis);
     _IWzResMan__raw_GetObject_t orig_raw_GetObject = (_IWzResMan__raw_GetObject_t)pTable[7];
-    Ztl_bstr_t sFile;
-    Ztl_bstr_t sHotfix;
 
-    orig_Ztl_bstr_t__constuctorA(&sFile, NULL, Config::GameTitle);
-    orig_Ztl_bstr_t__constuctorW(&sHotfix, NULL, fmt::format(L"{}/Hotfix.img/{}", sFile.m_Data->m_wstr, sUOL.m_Data->m_wstr).c_str());
+    CStringW sPath(Config::GameTitle);
+    sPath += "/Hotfix.img/";
+    sPath += sUOL.m_Data->m_wstr;
+
+    Ztl_bstr_t sHotfix;
+    orig_Ztl_bstr_t__constuctorW(&sHotfix, NULL, sPath.GetString());
 
     HRESULT hResult = orig_raw_GetObject(
         pThis,
@@ -83,9 +85,6 @@ PVOID _fastcall hook_IWzResMan__GetObjectA(
 #ifdef _DEBUG
     std::wcout << "IWzResMan::GetObjectA " << sUOL.m_Data->m_wstr << std::endl;
 #endif
-
-    if (sFile.m_Data)
-        orig_bstr_t__Data_t__Release(sFile.m_Data, NULL);
 
     if (sHotfix.m_Data)
         orig_bstr_t__Data_t__Release(sHotfix.m_Data, NULL);
