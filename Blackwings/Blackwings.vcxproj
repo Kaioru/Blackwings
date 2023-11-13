@@ -89,7 +89,6 @@
     <ClInclude Include="patches.h" />
     <ClInclude Include="memory.h" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="Ztl_bstr_t.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CInputSystem.cpp" />
@@ -100,6 +99,7 @@
     <ClCompile Include="patch_game_input_joystick_disable.cpp" />
     <ClCompile Include="patch_game_logo_skip.cpp" />
     <ClCompile Include="patch_game_resman_filesystem.cpp" />
+    <ClCompile Include="patch_game_template_lazy_load.cpp" />
     <ClCompile Include="patch_game_window_imgui.cpp" />
     <ClCompile Include="patch_game_window_sizing.cpp" />
     <ClCompile Include="patch_winapi.cpp" />
@@ -115,9 +115,6 @@
       <FileType>Document</FileType>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
     </CopyFileToFolders>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="cpp.hint" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -48,9 +48,6 @@
     <ClInclude Include="CInputSystem.h">
       <Filter>Header Files\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Ztl_bstr_t.h">
-      <Filter>Header Files\Game</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -95,11 +92,11 @@
     <ClCompile Include="patch_game_resman_filesystem.cpp">
       <Filter>Source Files\Patches</Filter>
     </ClCompile>
+    <ClCompile Include="patch_game_template_lazy_load.cpp">
+      <Filter>Source Files\Patches</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="Blackwings.ini" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="cpp.hint" />
   </ItemGroup>
 </Project>

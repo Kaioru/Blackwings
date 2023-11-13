@@ -10,6 +10,7 @@ public:
     static BOOL     GameWindowImGui;
     static BOOL     GameWindowSizing;
     static BOOL     GameResManFileSystem;
+    static BOOL     GameTemplateLazyLoad;
     static BOOL     GameInputJoystickDisable;
 
     static VOID Read();
