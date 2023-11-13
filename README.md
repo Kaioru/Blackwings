@@ -12,7 +12,9 @@ The following are the available config options:
 #### Game
 * Title - Game Window Title
 * LogoSkip - Enables game logo skip
+* WindowImGui - Enables DirectX9 hooks for ImGui
 * WindowSizing - Enables dynamic window resizing
+* InputJoystickDisable - Disables joystick detection to avoid unneccessary poll calls
 
 ### ✨ Usage
 
