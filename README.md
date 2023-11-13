@@ -44,3 +44,8 @@ The following are the available config options:
 
 #### Running the localhost
 11. Run the localhost executable and `Blackwings` will be automatically injected
+
+### 🔨 Building
+#### MSBuild / Visual Studio
+1. [Install and setup vcpkg](https://vcpkg.io/en/getting-started.html)
+2. Use the `msbuild` command or build in Visual Studio
