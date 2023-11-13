@@ -116,7 +116,7 @@ HRESULT APIENTRY hook_IDirect3DDevice9__Present(
 
         // TODO: Hide maple cursor
         // Uncomment this to show demo UI
-        ImGui::ShowDemoWindow();
+        // ImGui::ShowDemoWindow();
 
         ImGui::EndFrame();
         ImGui::Render();
