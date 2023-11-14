@@ -96,7 +96,7 @@ VOID _fastcall hook_CWvsApp__InitializeResMan(void* pThis, void* edx)
 
         std::vector<std::string> asCustomOrder;
         if (Config::GameResManHotfix)
-            asCustomOrder.push_back("Blackwings");
+            asCustomOrder.push_back(Config::GameTitle);
 
         for (auto i = 0; i < asCustomOrder.size(); i++) {
             auto pCustomPackage = new _com_ptr_t<_com_IIID<IWzPackage, &IID_IUnknown>>();
