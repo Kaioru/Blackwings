@@ -1,14 +1,17 @@
 #include "pch.h"
+#include <wrl.h>
 
-const INT RC_AUTO_SERIALIZE = 0x1;
-const INT RC_AUTO_SERIALIZE_NO_CACHE = 0x2;
-const INT RC_NO_AUTO_SERIALIZE = 0x4;
-const INT RC_DEFAULT_AUTO_SERIALIZE = 0x0;
-const INT RC_AUTO_SERIALIZE_MASK = 0x7;
-const INT RC_AUTO_REPARSE = 0x10;
-const INT RC_NO_AUTO_REPARSE = 0x20;
-const INT RC_DEFAULT_AUTO_REPARSE = 0x0;
-const INT RC_AUTO_REPARSE_MASK = 0x30;
+
+
+const INT _RC_AUTO_SERIALIZE = 0x1;
+const INT _RC_AUTO_SERIALIZE_NO_CACHE = 0x2;
+const INT _RC_NO_AUTO_SERIALIZE = 0x4;
+const INT _RC_DEFAULT_AUTO_SERIALIZE = 0x0;
+const INT _RC_AUTO_SERIALIZE_MASK = 0x7;
+const INT _RC_AUTO_REPARSE = 0x10;
+const INT _RC_NO_AUTO_REPARSE = 0x20;
+const INT _RC_DEFAULT_AUTO_REPARSE = 0x0;
+const INT _RC_AUTO_REPARSE_MASK = 0x30;
 
 typedef PVOID(__cdecl* _get_rm_t)();
 typedef PVOID(__cdecl* _get_root_t)();
@@ -64,7 +67,7 @@ VOID _fastcall hook_CWvsApp__InitializeResMan(void* pThis, void* edx)
     orig_PcCreateObject_IWzResMan(L"ResMan", pResman, NULL);
 
     auto pInstance = orig_IWzResMan__deref(pResman, NULL);
-    orig_IWzResMan__SetResManParam(pInstance, NULL, RC_AUTO_REPARSE | RC_AUTO_SERIALIZE, -1, -1);
+    orig_IWzResMan__SetResManParam(pInstance, NULL, _RC_AUTO_REPARSE | _RC_AUTO_SERIALIZE, -1, -1);
 
     auto pRoot = orig_get_root();
     orig_PcCreateObject_IWzNameSpace(L"NameSpace", pRoot, NULL);

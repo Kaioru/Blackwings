@@ -71,6 +71,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -86,6 +87,19 @@
     <ClInclude Include="CWvsContext.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="game.h" />
+    <ClInclude Include="IWzArchive.h" />
+    <ClInclude Include="IWzCanvas.h" />
+    <ClInclude Include="IWzFont.h" />
+    <ClInclude Include="IWzNameSpace.h" />
+    <ClInclude Include="IWzNameSpaceProperty.h" />
+    <ClInclude Include="IWzPackage.h" />
+    <ClInclude Include="IWzProperty.h" />
+    <ClInclude Include="IWzRawCanvas.h" />
+    <ClInclude Include="IWzRawCanvasAllocator.h" />
+    <ClInclude Include="IWzResMan.h" />
+    <ClInclude Include="IWzSeekableArchive.h" />
+    <ClInclude Include="IWzSerialize.h" />
+    <ClInclude Include="IWzWritableNameSpace.h" />
     <ClInclude Include="patches.h" />
     <ClInclude Include="memory.h" />
     <ClInclude Include="pch.h" />

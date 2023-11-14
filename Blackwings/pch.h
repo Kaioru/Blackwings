@@ -31,6 +31,26 @@
 #include "CWvsContext.h"
 #include "CInputSystem.h"
 
+#include <Unknwn.h>
+
+#include "IWzSerialize.h"
+#include "IWzArchive.h"
+
+#include "IWzCanvas.h"
+#include "IWzRawCanvasAllocator.h"
+#include "IWzRawCanvas.h"
+#include "IWzProperty.h"
+#include "IWzFont.h"
+
+#include "IWzResMan.h"
+
+#include "IWzNameSpace.h"
+#include "IWzNameSpaceProperty.h"
+#include "IWzWritableNameSpace.h"
+
+#include "IWzSeekableArchive.h"
+#include "IWzPackage.h"
+
 #include "config.h"
 #include "memory.h"
 #include "patches.h"
