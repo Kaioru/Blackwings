@@ -14,8 +14,9 @@ The following are the available config options:
 * LogoSkip - Enables game logo skip
 * WindowImGui - Enables DirectX9 hooks for ImGui
 * WindowSizing - Enables dynamic window resizing
-* ResManFileSystem - Enables loading from .img files via the Data/ directory
-* ResManHotfix - Enables hotfixing via `Title/Hotfix.img` (currently only works when ResManFileSystem = 1)
+* ResManUseFileSystem - Enables loading from .img files via the Data/ directory
+* ResManUsePackage - Enables loading custom `Title.wz` file, requires `Base.wz` to contain subdirectory (To be used in combination with ResManHotFix)
+* ResManHotfix - Enables hotfixing via `Title/Hotfix.img`
 * InputJoystickDisable - Disables joystick detection to avoid unneccessary poll calls
 
 ### ✨ Usage
