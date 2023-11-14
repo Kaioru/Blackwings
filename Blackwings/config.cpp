@@ -11,7 +11,7 @@ BOOL    Config::GameWindowImGui;
 BOOL    Config::GameWindowSizing;
 BOOL    Config::GameResManUseFileSystem;
 BOOL    Config::GameResManUsePackage;
-BOOL    Config::GameResManHotfix;
+BOOL    Config::GameResManLoadCustom;
 BOOL    Config::GameInputJoystickDisable;
 
 VOID Config::Read() {
@@ -30,8 +30,8 @@ VOID Config::Read() {
     GameLogoSkip                = GetPrivateProfileIntA("Game", "LogoSkip", 1, CONFIG_FILE_PATH);
     GameWindowImGui             = GetPrivateProfileIntA("Game", "WindowImGui", 1, CONFIG_FILE_PATH);
     GameWindowSizing            = GetPrivateProfileIntA("Game", "WindowSizing", 1, CONFIG_FILE_PATH);
-    GameResManUseFileSystem        = GetPrivateProfileIntA("Game", "ResManUseFileSystem", 0, CONFIG_FILE_PATH);
-    GameResManUsePackage      = GetPrivateProfileIntA("Game", "ResManUsePackage", 0, CONFIG_FILE_PATH);
-    GameResManHotfix            = GetPrivateProfileIntA("Game", "ResManHotfix", 0, CONFIG_FILE_PATH);
+    GameResManUseFileSystem     = GetPrivateProfileIntA("Game", "ResManUseFileSystem", 0, CONFIG_FILE_PATH);
+    GameResManUsePackage        = GetPrivateProfileIntA("Game", "ResManUsePackage", 0, CONFIG_FILE_PATH);
+    GameResManLoadCustom        = GetPrivateProfileIntA("Game", "ResManLoadCustom", 0, CONFIG_FILE_PATH);
     GameInputJoystickDisable    = GetPrivateProfileIntA("Game", "InputJoystickDisable", 1, CONFIG_FILE_PATH);
 }

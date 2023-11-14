@@ -9,6 +9,6 @@ public:
     static VOID PatchGameWindowImGui();
     static VOID PatchGameWindowSizing();
     static VOID PatchGameResManInitialize();
-    static VOID PatchGameResManHotfix();
+    static VOID PatchGameResManCustomHotfix();
     static VOID PatchGameInputJoystickDisable();
 };

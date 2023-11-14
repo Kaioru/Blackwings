@@ -65,7 +65,7 @@ PVOID _fastcall hook_IWzResMan__GetObjectA(
     return orig_IWzResMan__GetObjectA(pThis, edx, result, sUOL, vParam, vAux);
 }
 
-VOID Patches::PatchGameResManHotfix()
+VOID Patches::PatchGameResManCustomHotfix()
 {
     DetourAttach((PVOID*)&orig_IWzResMan__GetObjectA, (PVOID)hook_IWzResMan__GetObjectA);
 }
