@@ -9,6 +9,8 @@
 
 #include "framework.h"
 
+#define _WINSOCK_DEPRECATED_NO_WARNINGS
+
 #include <detours/detours.h>
 
 #pragma comment(lib, "d3d9.lib")
@@ -25,6 +27,7 @@
 #include <iostream>
 #endif
 
+#include <atlstr.h>
 #include <fmt/format.h>
 #include <spdlog/spdlog.h>
 

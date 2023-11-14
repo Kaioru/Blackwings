@@ -1,5 +1,4 @@
 #include "pch.h"
-#include <atlstr.h>
 
 struct _bstr_t_2 {
     struct {

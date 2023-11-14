@@ -9,7 +9,8 @@ public:
     static BOOL     GameLogoSkip;
     static BOOL     GameWindowImGui;
     static BOOL     GameWindowSizing;
-    static BOOL     GameResManFileSystem;
+    static BOOL     GameResManUseFileSystem;
+    static BOOL     GameResManUsePackage;
     static BOOL     GameResManHotfix;
     static BOOL     GameTemplateLazyLoad;
     static BOOL     GameInputJoystickDisable;
