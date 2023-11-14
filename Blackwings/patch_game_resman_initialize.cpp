@@ -95,7 +95,7 @@ VOID _fastcall hook_CWvsApp__InitializeResMan(void* pThis, void* edx)
         orig_IWzNameSpace__Get_NewEnum(*pNameSpace, NULL, pNewEnum);
 
         std::vector<std::string> asCustomOrder;
-        if (Config::GameResManHotfix)
+        if (Config::GameResManLoadCustom)
             asCustomOrder.push_back(Config::GameTitle);
 
         for (auto i = 0; i < asCustomOrder.size(); i++) {
