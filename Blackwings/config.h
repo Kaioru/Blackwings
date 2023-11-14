@@ -11,7 +11,7 @@ public:
     static BOOL     GameWindowSizing;
     static BOOL     GameResManUseFileSystem;
     static BOOL     GameResManUsePackage;
-    static BOOL     GameResManHotfix;
+    static BOOL     GameResManLoadCustom;
     static BOOL     GameTemplateLazyLoad;
     static BOOL     GameInputJoystickDisable;
 
