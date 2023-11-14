@@ -15,7 +15,8 @@ The following are the available config options:
 * WindowImGui - Enables DirectX9 hooks for ImGui
 * WindowSizing - Enables dynamic window resizing
 * ResManUseFileSystem - Enables loading from .img files via the Data/ directory
-* ResManUsePackage - Enables loading custom `Title.wz` file, requires `Base.wz` to contain subdirectory (To be used in combination with ResManHotFix)
+* ResManUsePackage - Enables loading custom `Title.wz` file, requires `Base.wz` to contain subdirectory
+   * To be used in combination with ResManHotFix
 * ResManHotfix - Enables hotfixing via `Title/Hotfix.img`
 * InputJoystickDisable - Disables joystick detection to avoid unneccessary poll calls
 
