@@ -35,21 +35,30 @@
 
 #include "IWzSerialize.h"
 #include "IWzArchive.h"
-
+#include "IWzShape2D.h"
+#include "IWzVector2D.h"
+#include "IWzGr2DLayer.h"
 #include "IWzCanvas.h"
 #include "IWzRawCanvasAllocator.h"
 #include "IWzRawCanvas.h"
 #include "IWzProperty.h"
 #include "IWzFont.h"
-
 #include "IWzResMan.h"
-
+#include "IWzUOL.h"
+#include "IWzGr2D.h"
+#include "IWzSound.h"
+#include "IWzSoundState.h"
 #include "IWzNameSpace.h"
 #include "IWzNameSpaceProperty.h"
 #include "IWzWritableNameSpace.h"
-
+#include "IWzFileSystem.h"
 #include "IWzSeekableArchive.h"
 #include "IWzPackage.h"
+#include "IWzNameSpaceWriter.h"
+#include "IWzPackageWriter.h"
+#include "IWzConvex2D.h"
+#include "IWzPolyShape2D.h"
+#include "IWzList.h"
 
 #include "config.h"
 #include "memory.h"
