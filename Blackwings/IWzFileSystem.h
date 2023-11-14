@@ -1,6 +1,6 @@
 #pragma once
 
-struct IWzFileSystem : IWzWritableNameSpace {
+class IWzFileSystem : public IWzWritableNameSpace {
 public:
-    virtual HRESULT raw_Init(wchar_t* unk1) = 0;
+    virtual HRESULT __stdcall raw_Init(wchar_t* unk1) = 0;
 };

@@ -31,7 +31,8 @@
 #include "CWvsContext.h"
 #include "CInputSystem.h"
 
-#include <Unknwn.h>
+#include "comip.h"
+#include "comdef.h"
 
 #include "IWzSerialize.h"
 #include "IWzArchive.h"
@@ -59,8 +60,6 @@
 #include "IWzConvex2D.h"
 #include "IWzPolyShape2D.h"
 #include "IWzList.h"
-
-// #include "_com_ptr_t.h"
 
 #include "config.h"
 #include "memory.h"

@@ -1,13 +1,13 @@
 #pragma once
 
-struct IWzList : IWzSerialize {
+class IWzList : public IWzSerialize {
 public:
-    virtual HRESULT get_item(unsigned int unk1, tagVARIANT* unk2) = 0;
-    virtual HRESULT put_item(unsigned int unk1, tagVARIANT unk2) = 0;
-    virtual HRESULT get__NewEnum(IUnknown** unk1) = 0;
-    virtual HRESULT get_count(unsigned int* unk1) = 0;
-    virtual HRESULT raw_Insert(tagVARIANT unk1, tagVARIANT unk2) = 0;
-    virtual HRESULT raw_Remove(int unk1, tagVARIANT* unk2) = 0;
-    virtual HRESULT raw_Array(unsigned int unk1) = 0;
-    virtual HRESULT raw_List() = 0;
+    virtual HRESULT __stdcall get_item(unsigned int unk1, tagVARIANT* unk2) = 0;
+    virtual HRESULT __stdcall put_item(unsigned int unk1, tagVARIANT unk2) = 0;
+    virtual HRESULT __stdcall get__NewEnum(IUnknown** unk1) = 0;
+    virtual HRESULT __stdcall get_count(unsigned int* unk1) = 0;
+    virtual HRESULT __stdcall raw_Insert(tagVARIANT unk1, tagVARIANT unk2) = 0;
+    virtual HRESULT __stdcall raw_Remove(int unk1, tagVARIANT* unk2) = 0;
+    virtual HRESULT __stdcall raw_Array(unsigned int unk1) = 0;
+    virtual HRESULT __stdcall raw_List() = 0;
 };

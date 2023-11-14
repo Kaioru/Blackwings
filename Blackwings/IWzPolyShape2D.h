@@ -1,5 +1,5 @@
 #pragma once
 
-struct IWzPolyShape2D : IWzShape2D {
+class IWzPolyShape2D : public IWzShape2D {
 
 };

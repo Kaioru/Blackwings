@@ -1,5 +1,5 @@
 #pragma once
 
-struct IWzConvex2D : IWzShape2D {
+class IWzConvex2D : public IWzShape2D {
 
 };

@@ -1,8 +1,8 @@
 #pragma once
 
-struct IWzArchive;
-struct IWzSerialize : IUnknown {
+class IWzArchive;
+class IWzSerialize : public IUnknown {
 public:
-    virtual HRESULT get_persistentUOL(wchar_t** unk1) = 0;
-    virtual HRESULT raw_Serialize(IWzArchive* unk1) = 0;
+    virtual HRESULT __stdcall get_persistentUOL(wchar_t** unk1) = 0;
+    virtual HRESULT __stdcall raw_Serialize(IWzArchive* unk1) = 0;
 };

@@ -1,66 +1,42 @@
 #include "pch.h"
 #include <atlstr.h>
 
-struct _variant_t : tagVARIANT {};
-struct Ztl_variant_t : _variant_t {};
-
-struct _bstr_t {
+struct _bstr_t_2 {
     struct {
         wchar_t* m_wstr;
         char* m_str;
         unsigned int m_RefCount;
-    }* m_Data;
+    }*m_Data;
 };
-struct Ztl_bstr_t : _bstr_t {};
+struct Ztl_variant_t : _variant_t {};
+struct Ztl_bstr_t : _bstr_t_2 {};
 
-typedef VOID(_fastcall* _Ztl_bstr_t__constuctorA_t)(Ztl_bstr_t* pThis, PVOID edx, const char* s);
-typedef VOID(_fastcall* _Ztl_bstr_t__constuctorW_t)(Ztl_bstr_t* pThis, PVOID edx, const wchar_t* s);
-typedef LONG(_fastcall* _bstr_t__Data_t__Release_t)(PVOID pThis, PVOID edx);
-typedef PVOID(_fastcall* _IWzResMan__GetObjectA_t)(
-    PVOID pThis,
-    PVOID edx,
+using T_IWzResMan__GetObjectA = PVOID(_fastcall*)(
+    IWzResMan* pThis, PVOID edx,
     Ztl_variant_t* result,
     Ztl_bstr_t sUOL,
     const Ztl_variant_t* vParam,
     const Ztl_variant_t* vAux
 );
-typedef HRESULT(__stdcall* _IWzResMan__raw_GetObject_t)(
-    PVOID pThis,
-    wchar_t* sUOL,
-    DWORD vParam,
-    unsigned int vParamHi32,
-    unsigned int vParamLo32,
-    unsigned int vParamMid32,
-    DWORD vAux,
-    unsigned int vAuxHi32,
-    unsigned int vAuxLo32,
-    unsigned int vAuxMid32,
-    tagVARIANT* result
-);
-typedef HRESULT(__stdcall* _IWzResMan__raw_OverrideObject_t)
-(
-    PVOID pThis,
-    wchar_t* sUOL,
-    wchar_t* sOverride
-);
+
+typedef VOID(_fastcall* _Ztl_bstr_t__constuctorA_t)(Ztl_bstr_t* pThis, PVOID edx, const char* s);
+typedef VOID(_fastcall* _Ztl_bstr_t__constuctorW_t)(Ztl_bstr_t* pThis, PVOID edx, const wchar_t* s);
+typedef LONG(_fastcall* _bstr_t__Data_t__Release_t)(PVOID pThis, PVOID edx);
 
 _Ztl_bstr_t__constuctorA_t orig_Ztl_bstr_t__constuctorA = reinterpret_cast<_Ztl_bstr_t__constuctorA_t>(0x00404890);
 _Ztl_bstr_t__constuctorW_t orig_Ztl_bstr_t__constuctorW = reinterpret_cast<_Ztl_bstr_t__constuctorW_t>(0x004048B0);
 _bstr_t__Data_t__Release_t orig_bstr_t__Data_t__Release = reinterpret_cast<_bstr_t__Data_t__Release_t>(0x00403AE0);
-_IWzResMan__GetObjectA_t orig_IWzResMan__GetObjectA = reinterpret_cast<_IWzResMan__GetObjectA_t>(0x00404AA0);
+
+auto orig_IWzResMan__GetObjectA = reinterpret_cast<T_IWzResMan__GetObjectA>(0x00404AA0);
 
 PVOID _fastcall hook_IWzResMan__GetObjectA(
-    PVOID pThis,
-    PVOID edx,
+    IWzResMan* pThis, PVOID edx,
     Ztl_variant_t* result,
     Ztl_bstr_t sUOL,
     const Ztl_variant_t* vParam,
     const Ztl_variant_t* vAux
 )
 {
-    VOID** pTable = *reinterpret_cast<void***>(pThis);
-    _IWzResMan__raw_GetObject_t orig_raw_GetObject = (_IWzResMan__raw_GetObject_t)pTable[7];
-
     CStringW sPath(Config::GameTitle);
     sPath += "/Hotfix.img/";
     sPath += sUOL.m_Data->m_wstr;
@@ -68,17 +44,10 @@ PVOID _fastcall hook_IWzResMan__GetObjectA(
     Ztl_bstr_t sHotfix;
     orig_Ztl_bstr_t__constuctorW(&sHotfix, NULL, sPath.GetString());
 
-    HRESULT hResult = orig_raw_GetObject(
-        pThis,
+    HRESULT hResult = pThis->raw_GetObject(
         sHotfix.m_Data->m_wstr,
-        *(DWORD*)&vParam->vt,
-        vParam->decVal.Hi32,
-        vParam->decVal.Lo32,
-        vParam->decVal.Mid32,
-        *(DWORD*)&vAux->vt,
-        vAux->decVal.Hi32,
-        vAux->decVal.Lo32,
-        vAux->decVal.Mid32,
+        *vParam,
+        *vAux,
         result
     );
 
@@ -94,7 +63,6 @@ PVOID _fastcall hook_IWzResMan__GetObjectA(
             orig_bstr_t__Data_t__Release(sUOL.m_Data, NULL);
         return result;
     }
-
     return orig_IWzResMan__GetObjectA(pThis, edx, result, sUOL, vParam, vAux);
 }
 

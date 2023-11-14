@@ -1,6 +1,4 @@
 #include "pch.h"
-#include "comip.h"
-#include "comdef.h"
 
 using T_get_rm = _com_ptr_t<_com_IIID<IWzResMan, &IID_IUnknown>>*(__cdecl*)();
 using T_get_root = _com_ptr_t<_com_IIID<IWzNameSpace, &IID_IUnknown>>*(_cdecl*)();
