@@ -36,8 +36,7 @@ PVOID _fastcall hook_IWzResMan__GetObjectA(
     const Ztl_variant_t* vAux
 )
 {
-    CStringW sPath(Config::GameTitle);
-    sPath += "/Hotfix.img/";
+    CStringW sPath("Hotfix.img/");
     sPath += sUOL.m_Data->m_wstr;
 
     Ztl_bstr_t sHotfix;

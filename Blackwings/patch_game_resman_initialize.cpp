@@ -76,23 +76,47 @@ VOID _fastcall hook_CWvsApp__InitializeResMan(void* pThis, void* edx)
     }
 
     if (!bInitResMan && Config::GameResManUsePackage) {
-        auto pPackage = new _com_ptr_t<_com_IIID<IWzPackage, &IID_IUnknown>>();
+        auto pBasePackage = new _com_ptr_t<_com_IIID<IWzPackage, &IID_IUnknown>>();
 
-        orig_PcCreateObject_Package(L"NameSpace#Package", pPackage, NULL);
+        orig_PcCreateObject_Package(L"NameSpace#Package", pBasePackage, NULL);
 
-        auto pBase = new tagVARIANT();
-        orig_IWzNameSpace__Getitem(*pFileSystem, NULL, pBase, _bstr_t("Base.wz"));
+        auto pBaseData = new tagVARIANT();
+        orig_IWzNameSpace__Getitem(*pFileSystem, NULL, pBaseData, _bstr_t("Base.wz"));
 
-        auto pBaseUnknown = orig_Ztl_variant_t__GetUnknown(pBase, NULL, FALSE, FALSE);
+        auto pBaseUnknown = orig_Ztl_variant_t__GetUnknown(pBaseData, NULL, FALSE, FALSE);
         auto pBaseArchive = new _com_ptr_t<_com_IIID<IWzSeekableArchive, &IID_IUnknown>>(pBaseUnknown);
         
-        delete pBase;
-        orig_IWzPackage__Init(*pPackage, NULL, _bstr_t("95"), _bstr_t("../Data"), *pBaseArchive);
-        orig_IWzNameSpace__Mount(*pNameSpace, NULL, _bstr_t("/"), *pPackage, 0);
+        delete pBaseData;
+        orig_IWzPackage__Init(*pBasePackage, NULL, _bstr_t("95"), _bstr_t("../Data"), *pBaseArchive);
+        orig_IWzNameSpace__Mount(*pNameSpace, NULL, _bstr_t("/"), *pBasePackage, 0);
 
         auto pNewEnum = new _com_ptr_t<_com_IIID<IUnknown, &IID_IUnknown>>();
             
         orig_IWzNameSpace__Get_NewEnum(*pNameSpace, NULL, pNewEnum);
+
+        std::vector<std::string> asCustomOrder;
+        if (Config::GameResManHotfix)
+            asCustomOrder.push_back("Blackwings");
+
+        for (auto i = 0; i < asCustomOrder.size(); i++) {
+            auto pCustomPackage = new _com_ptr_t<_com_IIID<IWzPackage, &IID_IUnknown>>();
+
+            orig_PcCreateObject_Package(L"NameSpace#Package", pCustomPackage, NULL);
+
+            CString sFileName = CString(asCustomOrder[i].c_str());
+            sFileName += ".wz";
+
+            auto pCustomData = new tagVARIANT();
+            orig_IWzNameSpace__Getitem(*pFileSystem, NULL, pCustomData, _bstr_t(sFileName));
+
+            auto pCustomUnknown = orig_Ztl_variant_t__GetUnknown(pCustomData, NULL, FALSE, FALSE);
+            auto pCustomArchive = new _com_ptr_t<_com_IIID<IWzSeekableArchive, &IID_IUnknown>>(pCustomUnknown);
+
+            auto pCustomDirectory =
+
+                orig_IWzPackage__Init(*pCustomPackage, NULL, _bstr_t("95"), _bstr_t("/"), *pCustomArchive);
+            orig_IWzNameSpace__Mount(*pNameSpace, NULL, _bstr_t("/"), *pCustomPackage, 0);
+        }
 
         std::vector<std::string> asNameOrder;
         asNameOrder.push_back("Character");
@@ -111,9 +135,6 @@ VOID _fastcall hook_CWvsApp__InitializeResMan(void* pThis, void* edx)
         asNameOrder.push_back("Sound");
         asNameOrder.push_back("Map");
 
-        if (Config::GameResManHotfix)
-            asNameOrder.push_back(Config::GameTitle);
-
         for (auto i = 0; i < asNameOrder.size(); i++) {
             auto pSubPackage = new _com_ptr_t<_com_IIID<IWzPackage, &IID_IUnknown>>();
 
@@ -122,10 +143,10 @@ VOID _fastcall hook_CWvsApp__InitializeResMan(void* pThis, void* edx)
             CString sFileName = CString(asNameOrder[i].c_str());
             sFileName += ".wz";
 
-            auto pSubItem = new tagVARIANT();
-            orig_IWzNameSpace__Getitem(*pFileSystem, NULL, pSubItem, _bstr_t(sFileName));
+            auto pSubData = new tagVARIANT();
+            orig_IWzNameSpace__Getitem(*pFileSystem, NULL, pSubData, _bstr_t(sFileName));
 
-            auto pSubUnknown = orig_Ztl_variant_t__GetUnknown(pSubItem, NULL, FALSE, FALSE);
+            auto pSubUnknown = orig_Ztl_variant_t__GetUnknown(pSubData, NULL, FALSE, FALSE);
             auto pSubArchive = new _com_ptr_t<_com_IIID<IWzSeekableArchive, &IID_IUnknown>>(pSubUnknown);
 
             auto pSubDirectory = new tagVARIANT();
