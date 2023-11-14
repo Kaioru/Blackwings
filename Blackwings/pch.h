@@ -60,6 +60,8 @@
 #include "IWzPolyShape2D.h"
 #include "IWzList.h"
 
+// #include "_com_ptr_t.h"
+
 #include "config.h"
 #include "memory.h"
 #include "patches.h"

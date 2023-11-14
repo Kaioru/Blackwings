@@ -22,6 +22,12 @@
     <Filter Include="Header Files\Game">
       <UniqueIdentifier>{ccaa53ec-bf8f-4096-b15a-534bc8bc0f9c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game\Com">
+      <UniqueIdentifier>{b801f00c-e851-4e84-9beb-d064fd0d99ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\COM">
+      <UniqueIdentifier>{9c6b963a-8278-4491-8490-7a5ad326ed33}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -126,6 +132,9 @@
     <ClInclude Include="IWzList.h">
       <Filter>Header Files\Game</Filter>
     </ClInclude>
+    <ClInclude Include="_com_ptr_t.h">
+      <Filter>Header Files\Game\COM</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -172,6 +181,9 @@
     </ClCompile>
     <ClCompile Include="patch_game_resman_hotfix.cpp">
       <Filter>Source Files\Patches</Filter>
+    </ClCompile>
+    <ClCompile Include="_com_ptr_t.cpp">
+      <Filter>Source Files\Game\Com</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

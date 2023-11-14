@@ -116,6 +116,7 @@
     <ClInclude Include="patches.h" />
     <ClInclude Include="memory.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="_com_ptr_t.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CInputSystem.cpp" />
@@ -136,6 +137,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="_com_ptr_t.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="Blackwings.ini">
