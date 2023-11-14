@@ -112,9 +112,7 @@ VOID _fastcall hook_CWvsApp__InitializeResMan(void* pThis, void* edx)
             auto pCustomUnknown = orig_Ztl_variant_t__GetUnknown(pCustomData, NULL, FALSE, FALSE);
             auto pCustomArchive = new _com_ptr_t<_com_IIID<IWzSeekableArchive, &IID_IUnknown>>(pCustomUnknown);
 
-            auto pCustomDirectory =
-
-                orig_IWzPackage__Init(*pCustomPackage, NULL, _bstr_t("95"), _bstr_t("/"), *pCustomArchive);
+            orig_IWzPackage__Init(*pCustomPackage, NULL, _bstr_t("95"), _bstr_t("/"), *pCustomArchive);
             orig_IWzNameSpace__Mount(*pNameSpace, NULL, _bstr_t("/"), *pCustomPackage, 0);
         }
 
