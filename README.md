@@ -36,7 +36,18 @@ The following are the available config options:
 2. Copy contents of the release to your Mushroom game folder with the localhost
     * `Blackwings.dll`, `Blackwings.ini`, and other `*.dll` files (if any)
 
-#### Method 1: Modifying imports of client
+#### Method 1: Using the injector
+3. Copy `Blackwings Launcher.exe` to your Mushroom game folder
+4. Rename your localhost to `MapleStoryU.exe`
+5. Run `Blackwings Launcher.exe`
+    * It should run as administrator by default, if not do it manually
+
+#### Method 2: Replacing ijl15.dll
+3. Rename `ijl15.dll` to `ijl15_orig.dll`
+4. Rename `Blackwings.dll` to `ijl15.dll`
+5. Set `ijl15 = 1` under Export in `Blackwings.ini`
+
+#### Method 3: Modifying imports of client
 3. Open the localhost in CFF Explorer
 4. Select `Import Adder` in the left tab
 5. Select `Add` and locate `Blackwings.dll`
@@ -44,11 +55,6 @@ The following are the available config options:
 7. Select the `Import By Name` button
 8. Select `Rebuild Import Table`
 9. Save the file via the toolbar `File -> Save`
-
-#### Method 2: Replacing ijl15.dll
-3. Rename `ijl15.dll` to `ijl15_orig.dll`
-4. Rename `Blackwings.dll` to `ijl15.dll`
-5. Set `ijl15 = 1` under Export in `Blackwings.ini`
 
 #### Update configurations
 10. Modify the `Blackwings.ini` file to the appropriate settings
