@@ -11,4 +11,6 @@ public:
     static VOID PatchGameResManInitialize();
     static VOID PatchGameResManCustomHotfix();
     static VOID PatchGameInputJoystickDisable();
+
+    static VOID PatchExportIjl15();
 };

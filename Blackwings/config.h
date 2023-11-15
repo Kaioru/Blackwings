@@ -15,5 +15,7 @@ public:
     static BOOL     GameTemplateLazyLoad;
     static BOOL     GameInputJoystickDisable;
 
+    static BOOL     ExportIjl15;
+
     static VOID Read();
 };

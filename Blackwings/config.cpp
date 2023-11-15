@@ -14,6 +14,8 @@ BOOL    Config::GameResManUsePackage;
 BOOL    Config::GameResManLoadCustom;
 BOOL    Config::GameInputJoystickDisable;
 
+BOOL    Config::ExportIjl15;
+
 VOID Config::Read() {
     LPSTR sHost = new char[255];
 
@@ -34,4 +36,6 @@ VOID Config::Read() {
     GameResManUsePackage        = GetPrivateProfileIntA("Game", "ResManUsePackage", 0, CONFIG_FILE_PATH);
     GameResManLoadCustom        = GetPrivateProfileIntA("Game", "ResManLoadCustom", 0, CONFIG_FILE_PATH);
     GameInputJoystickDisable    = GetPrivateProfileIntA("Game", "InputJoystickDisable", 1, CONFIG_FILE_PATH);
+
+    ExportIjl15                 = GetPrivateProfileIntA("Export", "ijl15", 0, CONFIG_FILE_PATH);
 }

@@ -22,6 +22,9 @@ VOID Game::OnGameInit()
     Patches::PatchWinAPI();
     Patches::PatchWinSock();
 
+    if (Config::ExportIjl15)
+        Patches::PatchExportIjl15();
+
     DetourTransactionCommit();
 
     SPDLOG_INFO("{} initialized", Config::GameTitle);

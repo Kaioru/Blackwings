@@ -26,7 +26,6 @@ The following are the available config options:
 
 #### Prerequisites
 * An installation of v.95.1 Mushroom game
-* An installation of CFF Explorer (or any alternative)
 * A working copy of a v.95.1 localhost
 
 #### Download a release
@@ -37,7 +36,7 @@ The following are the available config options:
 2. Copy contents of the release to your Mushroom game folder with the localhost
     * `Blackwings.dll`, `Blackwings.ini`, and other `*.dll` files (if any)
 
-#### Add imports to localhost
+#### Modifying imports of client (Method 1)
 3. Open the localhost in CFF Explorer
 4. Select `Import Adder` in the left tab
 5. Select `Add` and locate `Blackwings.dll`
@@ -45,6 +44,11 @@ The following are the available config options:
 7. Select the `Import By Name` button
 8. Select `Rebuild Import Table`
 9. Save the file via the toolbar `File -> Save`
+
+#### Replacing ijl15.dll (Method 2)
+3. Rename `ijl15.dll` to `ijl15_orig.dll`
+4. Rename `Blackwings.dll` to `ijl15.dll`
+5. Set `ijl15 = 1` under Export in `Blackwings.ini`
 
 #### Update configurations
 10. Modify the `Blackwings.ini` file to the appropriate settings
