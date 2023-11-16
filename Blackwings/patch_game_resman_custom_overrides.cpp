@@ -37,7 +37,7 @@ PVOID _fastcall hook_IWzResMan__GetObjectA(
 )
 {
     CStringW sPath(Config::GameResManUseFileSystem ? Config::GameTitle : "");
-    sPath += "/Hotfix.img/";
+    sPath += "/Overrides.img/";
     sPath += sUOL.m_Data->m_wstr;
 
     Ztl_bstr_t sHotfix;
@@ -65,7 +65,7 @@ PVOID _fastcall hook_IWzResMan__GetObjectA(
     return orig_IWzResMan__GetObjectA(pThis, edx, result, sUOL, vParam, vAux);
 }
 
-VOID Patches::PatchGameResManCustomHotfix()
+VOID Patches::PatchGameResManCustomOverrides()
 {
     DetourAttach((PVOID*)&orig_IWzResMan__GetObjectA, (PVOID)hook_IWzResMan__GetObjectA);
 }

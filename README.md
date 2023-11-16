@@ -19,7 +19,7 @@ The following are the available config options:
 * ResManLoadCustom - Enables loading custom data and various features
     * Note: Ensure either ResManUseFileSystem or ResManUsePackage is set to 1
     * The file loaded will be based on the configured game title for example: `Blackwings.wz`
-    * The `Hotfix.img` allows for override of data nodes found in the base data (possibly works for adding new as well)
+    * The `Overrides.img` allows for override of data nodes found in the base data (possibly works for adding new as well)
 * InputJoystickDisable - Disables joystick detection to avoid unneccessary poll calls
 
 ### ✨ Usage

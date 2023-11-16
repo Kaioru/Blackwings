@@ -12,7 +12,6 @@ public:
     static BOOL     GameResManUseFileSystem;
     static BOOL     GameResManUsePackage;
     static BOOL     GameResManLoadCustom;
-    static BOOL     GameTemplateLazyLoad;
     static BOOL     GameInputJoystickDisable;
 
     static BOOL     ExportIjl15;
