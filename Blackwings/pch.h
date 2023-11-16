@@ -34,6 +34,9 @@
 #include "CWvsContext.h"
 #include "CInputSystem.h"
 
+#include "CInPacket.h"
+#include "COutPacket.h"
+
 #include "comip.h"
 #include "comdef.h"
 
