@@ -179,6 +179,9 @@
     <ClCompile Include="patch_export_ijl15.cpp">
       <Filter>Source Files\Patches\Exports</Filter>
     </ClCompile>
+    <ClCompile Include="patch_game_netmsg_custom.cpp">
+      <Filter>Source Files\Patches</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="Blackwings.ini" />

@@ -13,6 +13,7 @@ public:
     static BOOL     GameResManUsePackage;
     static BOOL     GameResManLoadCustom;
     static BOOL     GameInputJoystickDisable;
+    static BOOL     GameNetMsgCustom;
 
     static BOOL     ExportIjl15;
 

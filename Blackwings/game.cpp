@@ -47,6 +47,8 @@ VOID Game::OnGameStart()
         Patches::PatchGameResManCustomOverrides();
     if (Config::GameInputJoystickDisable)
         Patches::PatchGameInputJoystickDisable();
+    if (Config::GameNetMsgCustom)
+        Patches::PatchGameNetMsgCustom();
 
     DetourTransactionCommit();
 

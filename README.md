@@ -21,6 +21,7 @@ The following are the available config options:
     * The file loaded will be based on the configured game title for example: `Blackwings.wz`
     * The `Overrides.img` allows for override of data nodes found in the base data (possibly works for adding new as well)
 * InputJoystickDisable - Disables joystick detection to avoid unneccessary poll calls
+* NetMsgCustom - Enables overriding OnPacket methods for custom packet handling
 
 ### ✨ Usage
 
