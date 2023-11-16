@@ -44,7 +44,7 @@ VOID Game::OnGameStart()
     if (Config::GameResManUseFileSystem || Config::GameResManUsePackage)
         Patches::PatchGameResManInitialize();
     if (Config::GameResManLoadCustom)
-        Patches::PatchGameResManCustomHotfix();
+        Patches::PatchGameResManCustomOverrides();
     if (Config::GameInputJoystickDisable)
         Patches::PatchGameInputJoystickDisable();
 
