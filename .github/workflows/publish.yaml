@@ -61,7 +61,7 @@ jobs:
         vcpkg integrate install
   
     - name: Build
-      run: msbuild /property:Configuration=${{ matrix.configuration }}
+      run: msbuild /p:Configuration=${{ matrix.configuration }} /p:Platform=x86
 
     - name: Compress artifacts
       run: Compress-Archive -Path ${{ matrix.configuration }}/* -Destination Blackwings-${{ matrix.configuration }}-${{ needs.versioning.outputs.version }}.zip

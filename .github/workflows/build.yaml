@@ -18,4 +18,4 @@ jobs:
         vcpkg integrate install
   
     - name: Build
-      run: msbuild -property:Configuration=Release
+      run: msbuild /p:Configuration=Release /p:Platform=x86
