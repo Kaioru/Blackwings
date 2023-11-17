@@ -15,6 +15,7 @@ public:
     static VOID PatchGameInputJoystickDisable();
 
     static VOID PatchGameNetMsgCustom();
+    static VOID PatchGameNetMsgCustomProtocol();
 
     static VOID PatchExportIjl15();
 };

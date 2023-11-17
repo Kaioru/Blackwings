@@ -22,6 +22,8 @@ The following are the available config options:
     * The `Overrides.img` allows for override of data nodes found in the base data (possibly works for adding new as well)
 * InputJoystickDisable - Disables joystick detection to avoid unneccessary poll calls
 * NetMsgCustom - Enables overriding OnPacket methods for custom packet handling
+* NetMsgCustomProtocol - Enables handling of Blackwings network protocol
+    * BWSEND_INIT - Sent during every login stage connection
 
 ### ✨ Usage
 

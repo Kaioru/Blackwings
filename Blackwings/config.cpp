@@ -14,6 +14,7 @@ BOOL    Config::GameResManUsePackage;
 BOOL    Config::GameResManLoadCustom;
 BOOL    Config::GameInputJoystickDisable;
 BOOL    Config::GameNetMsgCustom;
+BOOL    Config::GameNetMsgCustomProtocol;
 
 BOOL    Config::ExportIjl15;
 
@@ -38,6 +39,7 @@ VOID Config::Read() {
     GameResManLoadCustom        = GetPrivateProfileIntA("Game", "ResManLoadCustom", 0, CONFIG_FILE_PATH);
     GameInputJoystickDisable    = GetPrivateProfileIntA("Game", "InputJoystickDisable", 1, CONFIG_FILE_PATH);
     GameNetMsgCustom            = GetPrivateProfileIntA("Game", "NetMsgCustom", 0, CONFIG_FILE_PATH);
+    GameNetMsgCustomProtocol    = GetPrivateProfileIntA("Game", "NetMsgCustomProtocol", 0, CONFIG_FILE_PATH);
 
     ExportIjl15                 = GetPrivateProfileIntA("Export", "ijl15", 0, CONFIG_FILE_PATH);
 }

@@ -135,6 +135,12 @@
     <ClInclude Include="COutPacket.h">
       <Filter>Header Files\Game</Filter>
     </ClInclude>
+    <ClInclude Include="BHSendOps.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BHRecvOps.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -193,6 +199,9 @@
     </ClCompile>
     <ClCompile Include="COutPacket.cpp">
       <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="patch_game_netmsg_custom_protocol.cpp">
+      <Filter>Source Files\Patches</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
