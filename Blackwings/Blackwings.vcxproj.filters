@@ -135,10 +135,10 @@
     <ClInclude Include="COutPacket.h">
       <Filter>Header Files\Game</Filter>
     </ClInclude>
-    <ClInclude Include="BHSendOps.h">
+    <ClInclude Include="BWSendOps.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="BHRecvOps.h">
+    <ClInclude Include="BWRecvOps.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

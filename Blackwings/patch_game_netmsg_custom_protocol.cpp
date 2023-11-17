@@ -7,7 +7,7 @@ auto orig_CWvsApp__ConnectLogin = reinterpret_cast<T_CWvsApp__ConnectLogin>(0x00
 VOID _fastcall hook_CWvsApp__ConnectLogin(PVOID pThis, PVOID edx)
 {
     orig_CWvsApp__ConnectLogin(pThis, edx);
-    (new COutPacket(BHSend_Init))->SendPacket();
+    (new COutPacket(BWSend_Init))->SendPacket();
 }
 
 VOID Patches::PatchGameNetMsgCustomProtocol() 

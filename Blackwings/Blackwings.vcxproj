@@ -82,8 +82,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="BHRecvOps.h" />
-    <ClInclude Include="BHSendOps.h" />
+    <ClInclude Include="BWRecvOps.h" />
+    <ClInclude Include="BWSendOps.h" />
     <ClInclude Include="CInPacket.h" />
     <ClInclude Include="CInputSystem.h" />
     <ClInclude Include="config.h" />

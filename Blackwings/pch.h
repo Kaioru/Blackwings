@@ -67,8 +67,8 @@
 #include "IWzPolyShape2D.h"
 #include "IWzList.h"
 
-#include "BHRecvOps.h"
-#include "BHSendOps.h"
+#include "BWRecvOps.h"
+#include "BWSendOps.h"
 
 #include "config.h"
 #include "memory.h"
