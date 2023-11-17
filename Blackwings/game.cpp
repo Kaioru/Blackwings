@@ -49,6 +49,8 @@ VOID Game::OnGameStart()
         Patches::PatchGameInputJoystickDisable();
     if (Config::GameNetMsgCustom)
         Patches::PatchGameNetMsgCustom();
+    if (Config::GameNetMsgCustomProtocol)
+        Patches::PatchGameNetMsgCustomProtocol();
 
     DetourTransactionCommit();
 
