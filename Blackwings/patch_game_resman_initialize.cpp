@@ -44,11 +44,11 @@ VOID _fastcall hook_CWvsApp__InitializeResMan(void* pThis, void* edx)
 {
     auto pResMan = orig_get_rm();
     auto pNameSpace = orig_get_root();
-    auto pFileSystem = new _com_ptr_t<_com_IIID<IWzFileSystem, &IID_IUnknown>>();
+    auto pFileSystem = _com_ptr_t<_com_IIID<IWzFileSystem, &IID_IUnknown>>();
 
     orig_PcCreateObject_ResMan(L"ResMan", pResMan, NULL);
     orig_PcCreateObject_NameSpace(L"NameSpace", pNameSpace, NULL);
-    orig_PcCreateObject_FileSystem(L"NameSpace#FileSystem", pFileSystem, NULL);
+    orig_PcCreateObject_FileSystem(L"NameSpace#FileSystem", std::addressof(pFileSystem), NULL);
 
     orig_IWzResMan__SetResManParam(*pResMan, NULL, (RESMAN_PARAM)((INT)RC_AUTO_REPARSE | (INT)RC_AUTO_SERIALIZE), -1, -1);
 
@@ -59,61 +59,60 @@ VOID _fastcall hook_CWvsApp__InitializeResMan(void* pThis, void* edx)
     orig_CWvsApp__Dir_BackSlashToSlash(sStartPath);
     orig_CWvsApp__Dir_upDir(sStartPath);
 
-    orig_IWzFileSystem__Init(*pFileSystem, NULL, _bstr_t(sStartPath));
+    orig_IWzFileSystem__Init(pFileSystem, NULL, _bstr_t(sStartPath));
     SPDLOG_INFO("ResMan initialize hooked at path: {}", sStartPath);
 
     if (!bInitResMan && Config::GameResManUseFileSystem) {
-        orig_IWzNameSpace__Mount(*pNameSpace, NULL, _bstr_t("/"), *pFileSystem, 0);
+        orig_IWzNameSpace__Mount(*pNameSpace, NULL, _bstr_t("/"), pFileSystem, 0);
 
-        auto pDataFileSystem = new _com_ptr_t<_com_IIID<IWzFileSystem, &IID_IUnknown>>();
+        auto pDataFileSystem = _com_ptr_t<_com_IIID<IWzFileSystem, &IID_IUnknown>>();
 
-        orig_PcCreateObject_FileSystem(L"NameSpace#FileSystem", pDataFileSystem, NULL);
+        orig_PcCreateObject_FileSystem(L"NameSpace#FileSystem", std::addressof(pDataFileSystem), NULL);
 
-        orig_IWzFileSystem__Init(*pDataFileSystem, NULL, _bstr_t("./Data"));
-        orig_IWzNameSpace__Mount(*pNameSpace, NULL, _bstr_t("/"), *pDataFileSystem, 0);
+        orig_IWzFileSystem__Init(pDataFileSystem, NULL, _bstr_t("./Data"));
+        orig_IWzNameSpace__Mount(*pNameSpace, NULL, _bstr_t("/"), pDataFileSystem, 0);
 
         bInitResMan = TRUE;
     }
 
     if (!bInitResMan && Config::GameResManUsePackage) {
-        auto pBasePackage = new _com_ptr_t<_com_IIID<IWzPackage, &IID_IUnknown>>();
+        auto pBasePackage = _com_ptr_t<_com_IIID<IWzPackage, &IID_IUnknown>>();
 
-        orig_PcCreateObject_Package(L"NameSpace#Package", pBasePackage, NULL);
+        orig_PcCreateObject_Package(L"NameSpace#Package", std::addressof(pBasePackage), NULL);
 
-        auto pBaseData = new tagVARIANT();
-        orig_IWzNameSpace__Getitem(*pFileSystem, NULL, pBaseData, _bstr_t("Base.wz"));
+        auto pBaseData = tagVARIANT();
+        orig_IWzNameSpace__Getitem(pFileSystem, NULL, &pBaseData, _bstr_t("Base.wz"));
 
-        auto pBaseUnknown = orig_Ztl_variant_t__GetUnknown(pBaseData, NULL, FALSE, FALSE);
-        auto pBaseArchive = new _com_ptr_t<_com_IIID<IWzSeekableArchive, &IID_IUnknown>>(pBaseUnknown);
+        auto pBaseUnknown = orig_Ztl_variant_t__GetUnknown(&pBaseData, NULL, FALSE, FALSE);
+        auto pBaseArchive = _com_ptr_t<_com_IIID<IWzSeekableArchive, &IID_IUnknown>>(pBaseUnknown);
         
-        delete pBaseData;
-        orig_IWzPackage__Init(*pBasePackage, NULL, _bstr_t("95"), _bstr_t("../Data"), *pBaseArchive);
-        orig_IWzNameSpace__Mount(*pNameSpace, NULL, _bstr_t("/"), *pBasePackage, 0);
+        orig_IWzPackage__Init(pBasePackage, NULL, _bstr_t("95"), _bstr_t("../Data"), pBaseArchive);
+        orig_IWzNameSpace__Mount(*pNameSpace, NULL, _bstr_t("/"), pBasePackage, 0);
 
-        auto pNewEnum = new _com_ptr_t<_com_IIID<IUnknown, &IID_IUnknown>>();
+        auto pNewEnum = _com_ptr_t<_com_IIID<IUnknown, &IID_IUnknown>>();
             
-        orig_IWzNameSpace__Get_NewEnum(*pNameSpace, NULL, pNewEnum);
+        orig_IWzNameSpace__Get_NewEnum(*pNameSpace, NULL, std::addressof(pNewEnum));
 
         std::vector<std::string> asCustomOrder;
         if (Config::GameResManLoadCustom)
             asCustomOrder.push_back(Config::GameTitle);
 
         for (auto i = 0; i < asCustomOrder.size(); i++) {
-            auto pCustomPackage = new _com_ptr_t<_com_IIID<IWzPackage, &IID_IUnknown>>();
+            auto pCustomPackage = _com_ptr_t<_com_IIID<IWzPackage, &IID_IUnknown>>();
 
-            orig_PcCreateObject_Package(L"NameSpace#Package", pCustomPackage, NULL);
+            orig_PcCreateObject_Package(L"NameSpace#Package", std::addressof(pCustomPackage), NULL);
 
             CString sFileName = CString(asCustomOrder[i].c_str());
             sFileName += ".wz";
 
-            auto pCustomData = new tagVARIANT();
-            orig_IWzNameSpace__Getitem(*pFileSystem, NULL, pCustomData, _bstr_t(sFileName));
+            auto pCustomData = tagVARIANT();
+            orig_IWzNameSpace__Getitem(pFileSystem, NULL, &pCustomData, _bstr_t(sFileName));
 
-            auto pCustomUnknown = orig_Ztl_variant_t__GetUnknown(pCustomData, NULL, FALSE, FALSE);
-            auto pCustomArchive = new _com_ptr_t<_com_IIID<IWzSeekableArchive, &IID_IUnknown>>(pCustomUnknown);
+            auto pCustomUnknown = orig_Ztl_variant_t__GetUnknown(&pCustomData, NULL, FALSE, FALSE);
+            auto pCustomArchive = _com_ptr_t<_com_IIID<IWzSeekableArchive, &IID_IUnknown>>(pCustomUnknown);
 
-            orig_IWzPackage__Init(*pCustomPackage, NULL, _bstr_t("95"), _bstr_t("/"), *pCustomArchive);
-            orig_IWzNameSpace__Mount(*pNameSpace, NULL, _bstr_t("/"), *pCustomPackage, 0);
+            orig_IWzPackage__Init(pCustomPackage, NULL, _bstr_t("95"), _bstr_t("/"), pCustomArchive);
+            orig_IWzNameSpace__Mount(*pNameSpace, NULL, _bstr_t("/"), pCustomPackage, 0);
         }
 
         std::vector<std::string> asNameOrder;
@@ -134,23 +133,23 @@ VOID _fastcall hook_CWvsApp__InitializeResMan(void* pThis, void* edx)
         asNameOrder.push_back("Map");
 
         for (auto i = 0; i < asNameOrder.size(); i++) {
-            auto pSubPackage = new _com_ptr_t<_com_IIID<IWzPackage, &IID_IUnknown>>();
+            auto pSubPackage = _com_ptr_t<_com_IIID<IWzPackage, &IID_IUnknown>>();
 
-            orig_PcCreateObject_Package(L"NameSpace#Package", pSubPackage, NULL);
+            orig_PcCreateObject_Package(L"NameSpace#Package", std::addressof(pSubPackage), NULL);
             
             CString sFileName = CString(asNameOrder[i].c_str());
             sFileName += ".wz";
 
-            auto pSubData = new tagVARIANT();
-            orig_IWzNameSpace__Getitem(*pFileSystem, NULL, pSubData, _bstr_t(sFileName));
+            auto pSubData = tagVARIANT();
+            orig_IWzNameSpace__Getitem(pFileSystem, NULL, &pSubData, _bstr_t(sFileName));
 
-            auto pSubUnknown = orig_Ztl_variant_t__GetUnknown(pSubData, NULL, FALSE, FALSE);
-            auto pSubArchive = new _com_ptr_t<_com_IIID<IWzSeekableArchive, &IID_IUnknown>>(pSubUnknown);
+            auto pSubUnknown = orig_Ztl_variant_t__GetUnknown(&pSubData, NULL, FALSE, FALSE);
+            auto pSubArchive = _com_ptr_t<_com_IIID<IWzSeekableArchive, &IID_IUnknown>>(pSubUnknown);
 
-            auto pSubDirectory = new tagVARIANT();
-            orig_IWzNameSpace__Getitem(*pNameSpace, NULL, pSubDirectory, _bstr_t(asNameOrder[i].c_str()));
+            auto pSubDirectory = tagVARIANT();
+            orig_IWzNameSpace__Getitem(*pNameSpace, NULL, &pSubDirectory, _bstr_t(asNameOrder[i].c_str()));
 
-            auto pSubDirectoryUnknown = orig_Ztl_variant_t__GetUnknown(pSubDirectory, NULL, FALSE, FALSE);
+            auto pSubDirectoryUnknown = orig_Ztl_variant_t__GetUnknown(&pSubDirectory, NULL, FALSE, FALSE);
             auto pSubDirectoryArchive = (IWzSeekableArchive*)pSubDirectoryUnknown;
 
             auto pMainSub = orig_get_sub(i);
@@ -165,14 +164,14 @@ VOID _fastcall hook_CWvsApp__InitializeResMan(void* pThis, void* edx)
                 pSubDirectoryArchive
             );
 
-            orig_IWzPackage__Init(*pSubPackage, NULL, _bstr_t("95"), _bstr_t(asNameOrder[i].c_str()), *pSubArchive);
+            orig_IWzPackage__Init(pSubPackage, NULL, _bstr_t("95"), _bstr_t(asNameOrder[i].c_str()), pSubArchive);
 
-            auto pSub = new _com_ptr_t<_com_IIID<IWzPackage, &IID_IUnknown>>();
+            auto pSub = _com_ptr_t<_com_IIID<IWzPackage, &IID_IUnknown>>();
 
-            orig_PcCreateObject_Package(L"NameSpace#Package", pSub, NULL);
+            orig_PcCreateObject_Package(L"NameSpace#Package", std::addressof(pSub), NULL);
             
-            orig_IWzNameSpace__Mount(*pSub, NULL, _bstr_t("/"), *pSubPackage, 0);
-            orig_IWzNameSpace__Mount(*orig_get_sub(i), NULL, _bstr_t("/"), *pSub, 0);
+            orig_IWzNameSpace__Mount(pSub, NULL, _bstr_t("/"), pSubPackage, 0);
+            orig_IWzNameSpace__Mount(*orig_get_sub(i), NULL, _bstr_t("/"), pSub, 0);
             SPDLOG_INFO("{}", asNameOrder[i]);
         }
 
