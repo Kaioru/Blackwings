@@ -148,7 +148,7 @@ VOID _fastcall hook_CWvsApp__InitializeResMan(void* pThis, void* edx)
             auto pSubArchive = _com_ptr_t<_com_IIID<IWzSeekableArchive, &IID_IUnknown>>(pSubUnknown);
 
             auto pSubDirectory = tagVARIANT();
-            orig_IWzNameSpace__Getitem(*pNameSpace, NULL, &pSubDirectory, CComBSTR(asNameOrder[i].c_str()));
+            orig_IWzNameSpace__Getitem(*pNameSpace, NULL, &pSubDirectory, CComBSTR(asNameOrder[i].c_str()).m_str);
 
             auto pSubDirectoryUnknown = orig_Ztl_variant_t__GetUnknown(&pSubDirectory, NULL, FALSE, FALSE);
             auto pSubDirectoryArchive = (IWzSeekableArchive*)pSubDirectoryUnknown;
