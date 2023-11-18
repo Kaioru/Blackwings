@@ -1,5 +1,7 @@
 #pragma once
 
 enum BWSendOps {
-    BWSend_Init = 0x700
+    BWSend = 0x700,
+    BWSend_Init,
+    BWSend_ReadRes
 };

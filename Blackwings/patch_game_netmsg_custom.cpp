@@ -22,12 +22,69 @@ bool OnPacket(int nType, CInPacket* iPacket) {
         }
     */
 
-    switch (nType) {
-    default:
-        return false;
+    if (Config::GameNetMsgCustomProtocol) {
+        switch ((BWRecvOps)nType) {
+        case BWRecv_Read: {
+            auto address = iPacket->Decode4();
+            auto dataType = iPacket->Decode1();
+            auto oPacket = new COutPacket(BWSend_ReadRes);
+
+            oPacket->Encode4(address);
+            oPacket->Encode1(dataType);
+
+            switch (dataType) {
+            case 0: {
+                BYTE value;
+                Memory::Read<BYTE>(address, &value);
+                oPacket->Encode1(value);
+                break;
+            }
+            case 1: {
+                SHORT value;
+                Memory::Read<SHORT>(address, &value);
+                oPacket->Encode2(value);
+                break;
+            }
+            case 2: {
+                INT value;
+                Memory::Read<INT>(address, &value);
+                oPacket->Encode4(value);
+                break;
+            }
+            case 3:
+                // TODO
+                break;
+            }
+            break;
+        }
+        case BWRecv_Write: {
+            auto address = iPacket->Decode4();
+            auto dataType = iPacket->Decode1();
+
+            switch (dataType) {
+            case 0:
+                Memory::Write<BYTE>(address, iPacket->Decode1());
+                break;
+            case 1:
+                Memory::Write<SHORT>(address, iPacket->Decode2());
+                break;
+            case 2:
+                Memory::Write<INT>(address, iPacket->Decode4());
+                break;
+            case 3:
+                // TODO
+                break;
+            }
+            break;
+        }
+        default:
+            return false;
+        }
+
+        return true;
     }
 
-    return true;
+    return false;
 }
 
 VOID _fastcall hook_CLogin__OnPacket(PVOID pThis, PVOID edx, int nType, CInPacket* iPacket) {
