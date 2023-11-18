@@ -27,28 +27,28 @@ bool OnPacket(int nType, CInPacket* iPacket) {
         case BWRecv_Read: {
             auto address = iPacket->Decode4();
             auto dataType = iPacket->Decode1();
-            auto oPacket = new COutPacket(BWSend_ReadRes);
+            auto oPacket = COutPacket(BWSend_ReadRes);
 
-            oPacket->Encode4(address);
-            oPacket->Encode1(dataType);
+            oPacket.Encode4(address);
+            oPacket.Encode1(dataType);
 
             switch (dataType) {
             case 0: {
                 BYTE value;
                 Memory::Read<BYTE>(address, &value);
-                oPacket->Encode1(value);
+                oPacket.Encode1(value);
                 break;
             }
             case 1: {
                 SHORT value;
                 Memory::Read<SHORT>(address, &value);
-                oPacket->Encode2(value);
+                oPacket.Encode2(value);
                 break;
             }
             case 2: {
                 INT value;
                 Memory::Read<INT>(address, &value);
-                oPacket->Encode4(value);
+                oPacket.Encode4(value);
                 break;
             }
             case 3:

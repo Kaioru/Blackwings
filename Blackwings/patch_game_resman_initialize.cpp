@@ -105,6 +105,7 @@ VOID _fastcall hook_CWvsApp__InitializeResMan(void* pThis, void* edx)
             CString sFileName = CString(asCustomOrder[i].c_str());
             sFileName += ".wz";
 
+
             auto pCustomData = tagVARIANT();
             orig_IWzNameSpace__Getitem(pFileSystem, NULL, &pCustomData, _bstr_t(sFileName));
 
