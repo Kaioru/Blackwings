@@ -203,6 +203,9 @@
     <ClCompile Include="patch_game_netmsg_custom_protocol.cpp">
       <Filter>Source Files\Patches</Filter>
     </ClCompile>
+    <ClCompile Include="patch_game_load_monster_book_skip.cpp">
+      <Filter>Source Files\Patches</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="Blackwings.ini" />

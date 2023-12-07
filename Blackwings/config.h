@@ -7,6 +7,7 @@ public:
 
     static LPSTR    GameTitle;
     static BOOL     GameLogoSkip;
+    static BOOL     GameLoadMonsterBookSkip;
     static BOOL     GameWindowImGui;
     static BOOL     GameWindowSizing;
     static BOOL     GameResManUseFileSystem;

@@ -7,6 +7,7 @@ USHORT  Config::ConnectionPort;
 
 LPSTR   Config::GameTitle;
 BOOL    Config::GameLogoSkip;
+BOOL    Config::GameLoadMonsterBookSkip;
 BOOL    Config::GameWindowImGui;
 BOOL    Config::GameWindowSizing;
 BOOL    Config::GameResManUseFileSystem;
@@ -29,9 +30,10 @@ VOID Config::Read() {
     LPSTR sTitle = new char[255];
 
     GetPrivateProfileStringA("Game", "Title", "Blackwings", sTitle, 255, CONFIG_FILE_PATH);
-
+    
     GameTitle = sTitle;
     GameLogoSkip                = GetPrivateProfileIntA("Game", "LogoSkip", 1, CONFIG_FILE_PATH);
+    GameLoadMonsterBookSkip     = GetPrivateProfileIntA("Game", "LoadMonsterBookSkip", 1, CONFIG_FILE_PATH);
     GameWindowImGui             = GetPrivateProfileIntA("Game", "WindowImGui", 1, CONFIG_FILE_PATH);
     GameWindowSizing            = GetPrivateProfileIntA("Game", "WindowSizing", 1, CONFIG_FILE_PATH);
     GameResManUseFileSystem     = GetPrivateProfileIntA("Game", "ResManUseFileSystem", 0, CONFIG_FILE_PATH);

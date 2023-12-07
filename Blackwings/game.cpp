@@ -37,6 +37,8 @@ VOID Game::OnGameStart()
 
     if (Config::GameLogoSkip)
         Patches::PatchGameLogoSkip();
+    if (Config::GameLoadMonsterBookSkip)
+        Patches::PatchGameLoadMonsterBookSkip();
     if (Config::GameWindowImGui)
         Patches::PatchGameWindowImGui();
     if (Config::GameWindowSizing)

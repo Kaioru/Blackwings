@@ -12,6 +12,7 @@ The following are the available config options:
 #### Game
 * Title - Game Window Title
 * LogoSkip - Enables game logo skip
+* LoadMonsterBookSkip - Enables monster book load skip
 * WindowImGui - Enables DirectX9 hooks for ImGui
 * WindowSizing - Enables dynamic window resizing
 * ResManUseFileSystem - Enables loading from .img files via the Data/ directory

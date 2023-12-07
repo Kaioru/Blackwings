@@ -131,6 +131,7 @@
     <ClCompile Include="game.cpp" />
     <ClCompile Include="patch_export_ijl15.cpp" />
     <ClCompile Include="patch_game_input_joystick_disable.cpp" />
+    <ClCompile Include="patch_game_load_monster_book_skip.cpp" />
     <ClCompile Include="patch_game_netmsg_custom.cpp" />
     <ClCompile Include="patch_game_netmsg_custom_protocol.cpp" />
     <ClCompile Include="patch_game_resman_custom_overrides.cpp" />
