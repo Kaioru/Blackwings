@@ -19,3 +19,13 @@ jobs:
   
     - name: Build
       run: msbuild /p:Configuration=Release /p:Platform=x86
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: Blackwings
+        path: |
+          Release
+          !Release/**/*.exe
+          !Release/**/*.dll
+          !Release/**/*.ini

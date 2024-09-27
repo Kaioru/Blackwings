@@ -1,0 +1,8 @@
+arm64-windows/
+arm64-windows/share/
+arm64-windows/share/vcpkg-cmake-config/
+arm64-windows/share/vcpkg-cmake-config/copyright
+arm64-windows/share/vcpkg-cmake-config/vcpkg-port-config.cmake
+arm64-windows/share/vcpkg-cmake-config/vcpkg.spdx.json
+arm64-windows/share/vcpkg-cmake-config/vcpkg_abi_info.txt
+arm64-windows/share/vcpkg-cmake-config/vcpkg_cmake_config_fixup.cmake
