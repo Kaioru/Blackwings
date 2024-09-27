@@ -489,3 +489,16 @@ FodyWeavers.xsd
 # Additional files built by Visual Studio
 
 # End of https://www.toptal.com/developers/gitignore/api/c++,visualstudio,macos,windows
+
+# Created by https://www.toptal.com/developers/gitignore/api/vcpkg
+# Edit at https://www.toptal.com/developers/gitignore?templates=vcpkg
+
+### vcpkg ###
+# Vcpkg
+
+vcpkg-manifest-install.log
+
+## Manifest Mode
+vcpkg_installed/
+
+# End of https://www.toptal.com/developers/gitignore/api/vcpkg
