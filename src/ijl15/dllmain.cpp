@@ -1,5 +1,9 @@
 // dllmain.cpp : Defines the entry point for the DLL application.
 #include "pch.h"
+#include "ijl15.h"
+
+#define LIB_BACKUP_NAME "ijl15.bak"
+#define LIB_INJECT_NAME "Blackwings.dll"
 
 FARPROC pIjlGetLibVersion;
 FARPROC pIjlInit;
@@ -10,10 +14,18 @@ FARPROC pIjlErrorStr;
 
 BOOL Initialize()
 {
-    HMODULE hModule = LoadLibraryA("ijl15_orig.dll");
+    DWORD dwWritten;
+    HANDLE hFile = CreateFileA(LIB_BACKUP_NAME, (GENERIC_READ | GENERIC_WRITE), NULL, NULL, CREATE_ALWAYS, NULL, NULL);
+
+    if (hFile) {
+        WriteFile(hFile, g_Ijl15_Raw, sizeof(g_Ijl15_Raw), &dwWritten, NULL);
+        CloseHandle(hFile);
+    }
+
+    HMODULE hModule = LoadLibraryA(LIB_BACKUP_NAME);
 
     if (hModule == NULL) {
-        MessageBoxA(NULL, "Failed to find ijl15_orig.dll file", "File not found", 0);
+        MessageBoxA(NULL, "Failed to find " LIB_BACKUP_NAME " file", "File not found", 0);
         ExitProcess(0);
         return FALSE;
     }
@@ -69,7 +81,8 @@ BOOL APIENTRY DllMain(
     {
         case DLL_PROCESS_ATTACH: 
         {
-            HMODULE hModule = LoadLibraryA("Blackwings.dll");
+            HMODULE hModule = LoadLibraryA(LIB_INJECT_NAME);
+            OutputDebugStringA("REACHED HERE");
             break;
         }
         case DLL_PROCESS_DETACH:
