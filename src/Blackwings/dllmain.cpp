@@ -2,6 +2,8 @@
 #include "pch.h"
 #include <cstdio>
 
+#define TITLE "Blackwings"
+
 extern "C" __declspec(dllexport) VOID NoOp() {}
 
 BOOL APIENTRY DllMain( 
@@ -10,13 +12,17 @@ BOOL APIENTRY DllMain(
     LPVOID lpReserved
 )
 {
+    DisableThreadLibraryCalls(hModule);
+
     switch (ul_reason_for_call)
     {
         case DLL_PROCESS_ATTACH: {
+
+#ifdef _DEBUG
             BOOL bAlloc = AllocConsole();
 
             if (bAlloc) {
-                SetConsoleTitleA("Hello");
+                SetConsoleTitleA(fmt::format("{} (PID: {})", TITLE, GetCurrentProcessId()).c_str());
 
                 FILE* file = nullptr;
 
@@ -24,11 +30,16 @@ BOOL APIENTRY DllMain(
                 freopen_s(&file, "CONOUT$", "w", stdout);
                 freopen_s(&file, "CONOUT$", "w", stderr);
             }
+#endif
+
+            Patches::PatchWinSock();
+            Patches::PatchWinAPI();
+
+            OutputDebugStringA("DONE");
             break;
         }
-        case DLL_PROCESS_DETACH:
-            break;
     }
+
     return TRUE;
 }
 

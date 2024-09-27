@@ -10,4 +10,18 @@
 // add headers that you want to pre-compile here
 #include "framework.h"
 
+#define _WINSOCK_DEPRECATED_NO_WARNINGS
+
+#include <detours/detours.h>
+#include <fmt/format.h>
+#include <spdlog/spdlog.h>
+
+#ifndef _DEBUG
+#define SPDLOG_ACTIVE_LEVEL SPDLOG_LEVEL_OFF
+#endif
+
+#include "defines.h"
+#include "patches.h"
+#include "memory.h"
+
 #endif //PCH_H

@@ -18,6 +18,7 @@ INT WINAPI WinMain(
         "MapleStory.exe", 
         NULL, NULL, NULL, FALSE, CREATE_SUSPENDED, NULL, NULL, &si, &pi, LIB_INJECT_NAME, NULL
     )) {
+        OutputDebugStringA("ERROR1");
         return 1;
     }
 
@@ -27,6 +28,7 @@ INT WINAPI WinMain(
     DWORD dwExitCode;
 
     if (!GetExitCodeProcess(pi.hProcess, &dwExitCode)) {
+        OutputDebugStringA("ERROR2");
         return 1;
     }
 
