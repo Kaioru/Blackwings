@@ -25,7 +25,6 @@ jobs:
       with:
         name: Blackwings
         path: |
-          Release
-          !Release/**/*.exe
-          !Release/**/*.dll
-          !Release/**/*.ini
+          Release/**/*.exe
+          Release/**/*.dll
+          Release/**/*.ini
